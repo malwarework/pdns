@@ -2,6 +2,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <vector>
+#include "TrafficeVolumeReduction.h"
 
 using std::cout;
 using std::endl;
@@ -9,10 +10,13 @@ using json = nlohmann::json;
 
 using namespace Tins;
 
+
 bool callback(const PDU& pdu) {
     DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
     std::vector<std::string> ips;
     json j;
+
+    TrafficeVolumeReduction tvr;
 
     for (const auto& answer : dns.answers()){
         ips.push_back(answer.data());
@@ -20,10 +24,13 @@ bool callback(const PDU& pdu) {
         j["ttl"] = answer.ttl();
     }
     j["ips"] = ips;
-    cout << j << endl;
+    if(tvr.F1(j))
+        cout << j << endl;
     j.clear();
     return true;
 }
+
+
 
 int main(int argc, char* argv[]) {
     if(argc != 2) {

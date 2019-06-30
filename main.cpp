@@ -1,7 +1,11 @@
+#include <utility>
 #include <tins/tins.h>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <vector>
+#include <thread>
+#include <mutex>
+
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
 
@@ -15,20 +19,81 @@ using std::endl;
 using json = nlohmann::json;
 
 using namespace Tins;
+using namespace std;
 
 std::vector<Candidate> L;
+std::mutex L_mutex;
 
-#ifdef DEBUG
-const std::string currentDateTime() {
-    time_t     now = time(0);
-    struct tm  tstruct;
-    char       buf[80];
-    tstruct = *localtime(&now);
-    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+//
+//void timer1(std::vector<Candidate>& L, unsigned int interval)
+//{
+//    cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << endl;
+//    for(auto &elem : L){
+//        cout << elem.domain << "\t" << elem.ttl << endl;
+//    }
+//    cout << "vvvvvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
+//    while (true)
+//    {
+//        for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
+//            std::set<IP_TYPE> networks;
+//            for (auto ip : value->r){
+//                std::vector<std::string> results;
+//                boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
+//                results[2] = results[3] = '0';
+//                networks.insert(boost::algorithm::join(results, "."));
+//            }
+//            if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5))){
+//                ++value;
+//            }
+//            else{
+//                value = L.erase(value);
+//            }
+//        }
+//        std::this_thread::sleep_for(std::chrono::seconds(interval));
+//    }
+//}
 
-    return buf;
+
+void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval)
+{
+    PeriodicListPrunning filter2;
+    std::thread([func, filter2, interval]() {
+        while (true)
+        {
+            func(L);
+            std::this_thread::sleep_for(std::chrono::seconds(interval));
+        }
+    }).detach();
 }
-#endif
+
+
+void F2a(std::vector<Candidate>& _L)
+{
+    L_mutex.lock();
+    cout << endl;
+    cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << endl;
+    for(auto &elem : _L){
+        cout << elem.domain << "\t" << elem.ttl << endl;
+    }
+    cout << "vvvvvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
+    for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
+        std::set<IP_TYPE> networks;
+        for (auto ip : value->r){
+            std::vector<std::string> results;
+            boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
+            results[2] = results[3] = '0';
+            networks.insert(boost::algorithm::join(results, "."));
+        }
+        if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5))){
+            ++value;
+        }
+        else{
+            value = L.erase(value);
+        }
+    }
+    L_mutex.unlock();
+}
+
 
 std::set<IP_TYPE> resolveDomain(std::string domain){
     // The sender
@@ -75,8 +140,6 @@ bool callback(const PDU& pdu) {
         if (answer.query_type() == DNS::A){
             _dns.domain = answer.dname();
             _dns.ttl = answer.ttl();
-
-            // TODO Add CNAME
             try{
                 _dns.ips.insert(answer.data());
             }
@@ -96,11 +159,12 @@ bool callback(const PDU& pdu) {
     }
     if(tvr.F1(_dns)){
         #ifdef DEBUG
-            cout << "time: " << "\t" << currentDateTime() << endl;
             cout << _dns.domain << "\t" << _dns.ttl << endl;
-            PeriodicListPrunning f2;
-            f2.push(L, _dns);
         #endif
+        PeriodicListPrunning f2;
+        L_mutex.lock();
+        f2.push(L, _dns);
+        L_mutex.unlock();
     }
     return true;
 }
@@ -114,6 +178,7 @@ int main(int argc, char* argv[]) {
         #endif
         return 1;
     }
+    timer_start(F2a, 10);
 
     // Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;

@@ -44,11 +44,11 @@ void F2a(std::vector<Candidate>& _L)
 {
     L_mutex.lock();
     cout << endl;
-    cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << endl;
+#ifdef DEBUG
     for(auto &elem : _L){
         cout << elem.domain << "\t" << elem.ttl << endl;
     }
-    cout << "vvvvvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
+#endif
     for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
         std::set<IP_TYPE> networks;
         for (auto ip : value->r){
@@ -69,7 +69,9 @@ void F2a(std::vector<Candidate>& _L)
 
 void converttojson(std::vector<Candidate>& _L)
 {
+#ifdef KAFKA
     KafkaConnector kafka;
+#endif
 
     std::vector<json> jv;
     L_mutex.lock();
@@ -81,14 +83,14 @@ void converttojson(std::vector<Candidate>& _L)
         j["Q"] = value.q;
         json j_set(value.r);
         j["R"] = j_set;
-//        json j_vec(value.g);
-//        j["G"] = j_vec;
-        json j_veci(value.gi);
-        j["G"] = j_veci;
+        json j_vec(value.g);
+        j["G"] = j_vec;
         cout << j << endl;
         jv.push_back(j);
     }
+#ifdef KAKFA
     kafka.push(jv);
+#endif
     L_mutex.unlock();
 }
 

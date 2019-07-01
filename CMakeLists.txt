@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(passivedns)
 
 set(CMAKE_CXX_STANDARD 14)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lcppkafka -lrdkafa")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lcppkafka -lrdkafka")
 find_library(TINS_LIBRARY tins)
 find_library(RDKAFKA_LIBRARY rdkafka)
 find_library(CPPKAFKA_LIBRARY cppkafka)

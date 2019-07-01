@@ -79,10 +79,6 @@ void converttojson(std::vector<Candidate>& _L)
 //        j["G"] = j_vec;
         json j_veci(value.gi);
         j["G"] = j_veci;
-        for (auto _value : value.g)
-        {
-
-        }
         cout << j << endl;
     }
     L_mutex.unlock();

@@ -7,7 +7,9 @@ find_library(TINS_LIBRARY tins)
 FIND_LIBRARY(RDKAFKA_LIBRARY rdkafka++)
 find_package(nlohmann_json 3.2.0 REQUIRED)
 
-set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h KafkaConnector.cpp KafkaConnector.h)
+#set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h KafkaConnector.cpp KafkaConnector.h)
+set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h)
 add_executable(passivedns ${SOURCE_FILES})
 
-target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "/usr/local/lib64/libcppkafka.so")
+#target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "/usr/local/lib64/libcppkafka.so")
+target_link_libraries(passivedns "${TINS_LIBRARY}")

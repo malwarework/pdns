@@ -16,8 +16,7 @@ using namespace cppkafka;
 
 class KafkaConnector {
 private:
-    Producer producer;
-
+    Producer *producer;
 public:
     KafkaConnector();
     void push(std::vector<json>&);

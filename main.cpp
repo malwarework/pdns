@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <cppkafka/cppkafka.h>
 
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
@@ -18,6 +19,7 @@
 using std::cout;
 using std::endl;
 using json = nlohmann::json;
+using namespace cppkafka;
 
 using namespace Tins;
 using namespace std;

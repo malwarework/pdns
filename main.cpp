@@ -161,9 +161,6 @@ bool callback(const PDU& pdu) {
         }
     }
     if(tvr.F1(_dns)){
-        #ifdef DEBUG
-            cout << _dns.domain << "\t" << _dns.ttl << endl;
-        #endif
         PeriodicListPrunning f2;
         L_mutex.lock();
         f2.push(L, _dns);
@@ -182,6 +179,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     timer_start(F2a, 300);
+    // :TODO Set starting process on certain time
     timer_start(converttojson, 10);
 
     // Sniff on the provided interface in promiscuos mode

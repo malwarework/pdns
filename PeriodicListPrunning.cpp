@@ -8,7 +8,9 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
     Candidate candidate;
 
     bool inArray = false;
-
+    /*
+     * :TODO There is problems with calculating Gi and Ri
+     */
     for (Candidate& elem : L){
         if(elem.domain == domain.domain){
             // Set ti

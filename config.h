@@ -2,4 +2,4 @@
 #define IP_TYPE std::string
 #define DEBUG
 #define ERROR
-#define KAFKA
+//#define KAFKA

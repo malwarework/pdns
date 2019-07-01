@@ -75,11 +75,13 @@ void converttojson(std::vector<Candidate>& _L)
         j["Q"] = value.q;
         json j_set(value.r);
         j["R"] = j_set;
+        json j_vec(value.g);
+        j["G"] = j_vec;
         for (auto _value : value.g)
         {
 
         }
-        cout << j << end;
+        cout << j << endl;
     }
     L_mutex.unlock();
 }

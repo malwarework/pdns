@@ -90,7 +90,8 @@ void converttojson(std::vector<Candidate>& _L)
         cout << j << endl;
         jv.push_back(j);
         const string key = "some_key";
-        producer.produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").key(key).payload(j));
+        const string payload = "Hello world!";
+        producer.produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").key(key).payload(payload));
     }
     //kafka.push(jv);
     L_mutex.unlock();

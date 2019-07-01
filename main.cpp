@@ -9,7 +9,6 @@
 
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
-#include "KafkaConnector.h"
 
 #ifdef DEBUG
 #include <ctime>
@@ -75,7 +74,6 @@ void converttojson(std::vector<Candidate>& _L)
     Producer producer(config);
 
     std::vector<json> jv;
-    KafkaConnector kafka;
     L_mutex.lock();
     for (Candidate value : L)
     {

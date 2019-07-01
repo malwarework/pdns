@@ -17,7 +17,7 @@ using namespace cppkafka;
 class KafkaConnector {
 private:
     Producer producer;
-    MessageBuilder builder("CLICK_HOUSE_FASTFLUX_PDNS");
+
 public:
     KafkaConnector();
     void push(std::vector<json>&);

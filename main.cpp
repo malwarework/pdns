@@ -30,14 +30,36 @@ using namespace std;
 std::vector<Candidate> L;
 std::mutex L_mutex;
 
-void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval)
+void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
     PeriodicListPrunning filter2;
-    std::thread([func, filter2, interval]() {
+    std::thread([func, filter2, interval, cron]() {
+        if(cron){
+            tm timeout_tm={0};
+            timeout_tm.tm_hour = 0;
+            timeout_tm.tm_min = 0;
+            timeout_tm.tm_sec = 0;
+            timeout_tm.tm_isdst = -1;
+            time_t timeout_time_t=mktime(&timeout_tm);
+
+            func(L);
+#ifdef DEBUG
+            std::this_thread::sleep_for(std::chrono::seconds(interval));
+#elif
+            std::chrono::system_clock::time_point timeout_tp=
+                    std::chrono::system_clock::from_time_t(timeout_time_t);
+            std::this_thread::sleep_until(timeout_tp);
+            std::this_thread::sleep_for(std::chrono::hours(interval));
+#endif
+        }
         while (true)
         {
             func(L);
+#ifdef DEBUG
             std::this_thread::sleep_for(std::chrono::seconds(interval));
+#elif
+            std::this_thread::sleep_for(std::chrono::hours(interval));
+#endif
         }
     }).detach();
 }
@@ -47,11 +69,6 @@ void F2a(std::vector<Candidate>& _L)
 {
     L_mutex.lock();
     cout << endl;
-#ifdef DEBUG
-    for(auto &elem : _L){
-        cout << elem.domain << "\t" << elem.ttl << endl;
-    }
-#endif
     for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
         std::set<IP_TYPE> networks;
         for (auto ip : value->r){
@@ -75,7 +92,6 @@ void converttojson(std::vector<Candidate>& _L)
 #ifdef KAFKA
     KafkaConnector kafka;
 #endif
-
     std::vector<json> jv;
     L_mutex.lock();
     for (Candidate value : L)
@@ -88,7 +104,9 @@ void converttojson(std::vector<Candidate>& _L)
         j["R"] = j_set;
         json j_vec(value.g);
         j["G"] = j_vec;
+#ifdef DEBUG
         cout << j << endl;
+#endif
         jv.push_back(j);
     }
 #ifdef KAKFA
@@ -178,9 +196,16 @@ int main(int argc, char* argv[]) {
         #endif
         return 1;
     }
+#ifdef DEBUG
     timer_start(F2a, 300);
     // :TODO Set starting process on certain time
-    timer_start(converttojson, 10);
+    timer_start(converttojson, 10, true);
+#elif
+    timer_start(F2a, CRON_TIME);
+    // :TODO Set starting process on certain time
+    timer_start(converttojson, UPLOAD_HOUR, true);
+#endif
+
 
     // Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;

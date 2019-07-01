@@ -24,36 +24,6 @@ using namespace std;
 std::vector<Candidate> L;
 std::mutex L_mutex;
 
-//
-//void timer1(std::vector<Candidate>& L, unsigned int interval)
-//{
-//    cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << endl;
-//    for(auto &elem : L){
-//        cout << elem.domain << "\t" << elem.ttl << endl;
-//    }
-//    cout << "vvvvvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
-//    while (true)
-//    {
-//        for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
-//            std::set<IP_TYPE> networks;
-//            for (auto ip : value->r){
-//                std::vector<std::string> results;
-//                boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
-//                results[2] = results[3] = '0';
-//                networks.insert(boost::algorithm::join(results, "."));
-//            }
-//            if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5))){
-//                ++value;
-//            }
-//            else{
-//                value = L.erase(value);
-//            }
-//        }
-//        std::this_thread::sleep_for(std::chrono::seconds(interval));
-//    }
-//}
-
-
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval)
 {
     PeriodicListPrunning filter2;
@@ -90,6 +60,26 @@ void F2a(std::vector<Candidate>& _L)
         else{
             value = L.erase(value);
         }
+    }
+    L_mutex.unlock();
+}
+
+void converttojson(std::vector<Candidate>& _L)
+{
+    json j;
+    L_mutex.lock();
+    for (Candidate value : L)
+    {
+        j["domain"] = value.domain;
+        j["T"] = value.ttl;
+        j["Q"] = value.q;
+        json j_set(value.r);
+        j["R"] = j_set;
+        for (auto _value : value.g)
+        {
+
+        }
+        cout << j << end;
     }
     L_mutex.unlock();
 }
@@ -178,7 +168,8 @@ int main(int argc, char* argv[]) {
         #endif
         return 1;
     }
-    timer_start(F2a, 10);
+    timer_start(F2a, 300);
+    timer_start(converttojson, 10);
 
     // Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;

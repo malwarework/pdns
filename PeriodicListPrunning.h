@@ -21,6 +21,7 @@ struct Candidate{
     unsigned int q=0;
     unsigned short int ttl;
     std::set<IP_TYPE> r;
+    std::map<uint64_t, unsigned int> gi;
     std::vector<std::map<uint64_t, unsigned int>> g;
 };
 

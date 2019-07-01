@@ -9,13 +9,13 @@ KafkaConnector::KafkaConnector() {
             { "metadata.broker.list", "1.broker.kafka.prod:9092,2.broker.kafka.prod:9092,3.broker.kafka.prod:9092,4.broker.kafka.prod:9092,5.broker.kafka.prod:9092" }
     };
     this->producer = new Producer(config);
-    //this.producer(config);
 }
 
 void KafkaConnector::push(std::vector<json>& L)
 {
-    for (auto value : L)
+    for (json value : L)
     {
-        this->producer->produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").payload(value));
+        string payload = value.dump();
+        this->producer->produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").payload(payload));
     }
 }

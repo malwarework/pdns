@@ -8,6 +8,7 @@
 
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
+#include "KafkaConnector.h"
 
 #ifdef DEBUG
 #include <ctime>
@@ -66,10 +67,12 @@ void F2a(std::vector<Candidate>& _L)
 
 void converttojson(std::vector<Candidate>& _L)
 {
-    json j;
+    std::vector<json> jv;
+    KafkaConnector kafka;
     L_mutex.lock();
     for (Candidate value : L)
     {
+        json j;
         j["domain"] = value.domain;
         j["T"] = value.ttl;
         j["Q"] = value.q;
@@ -80,7 +83,9 @@ void converttojson(std::vector<Candidate>& _L)
         json j_veci(value.gi);
         j["G"] = j_veci;
         cout << j << endl;
+        jv.push_back(j);
     }
+    kafka.push(jv);
     L_mutex.unlock();
 }
 

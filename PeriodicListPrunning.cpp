@@ -23,9 +23,9 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
             std::set_difference(domain.ips.begin(), domain.ips.end(), elem.r.begin(), elem.r.end(), std::inserter(diff, diff.begin()));
             if (diff.size() > 0){
                 elem.gi.insert(std::make_pair(domain.t, diff.size()));
-                map<uint64_t, unsigned int> tmpmap;
-                tmpmap.insert(std::make_pair(domain.t, diff.size()));
-                elem.g.push_back(tmpmap);
+//                map<uint64_t, unsigned int> tmpmap;
+//                tmpmap.insert(std::make_pair(domain.t, diff.size()));
+//                elem.g.push_back(tmpmap);
             }
             //Set Rd
             elem.r.insert(domain.ips.begin(), domain.ips.end());
@@ -47,9 +47,9 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
         //Set Gd
         unsigned int domains_size = domain.ips.size();
         candidate.gi.insert(std::make_pair(domain.t, domains_size));
-        map<uint64_t, unsigned int> tmpmap;
-        tmpmap.insert(std::make_pair(domain.t, domains_size));
-        candidate.g.push_back(tmpmap);
+//        map<uint64_t, unsigned int> tmpmap;
+//        tmpmap.insert(std::make_pair(domain.t, domains_size));
+//        candidate.g.push_back(tmpmap);
         L.push_back(candidate);
     }
 };

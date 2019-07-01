@@ -76,7 +76,9 @@ void converttojson(std::vector<Candidate>& _L)
         json j_set(value.r);
         j["R"] = j_set;
         json j_vec(value.g);
+        json j_veci(value.gi);
         j["G"] = j_vec;
+        j["Gi"] = j_veci;
         for (auto _value : value.g)
         {
 

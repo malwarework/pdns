@@ -16,6 +16,6 @@ void KafkaConnector::push(std::vector<json>& L)
 {
     for (auto value : L)
     {
-        this->producer.produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").payload(value));
+        this->producer->produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").payload(value));
     }
 }

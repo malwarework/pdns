@@ -67,6 +67,11 @@ void F2a(std::vector<Candidate>& _L)
 
 void converttojson(std::vector<Candidate>& _L)
 {
+    Configuration config = {
+            { "metadata.broker.list", "1.broker.kafka.prod:9092,2.broker.kafka.prod:9092,3.broker.kafka.prod:9092,4.broker.kafka.prod:9092,5.broker.kafka.prod:9092" }
+    };
+    Producer producer(config);
+
     std::vector<json> jv;
     KafkaConnector kafka;
     L_mutex.lock();
@@ -84,8 +89,10 @@ void converttojson(std::vector<Candidate>& _L)
         j["G"] = j_veci;
         cout << j << endl;
         jv.push_back(j);
+        const string key = "some_key";
+        producer.produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").key(key).payload(j));
     }
-    kafka.push(jv);
+    //kafka.push(jv);
     L_mutex.unlock();
 }
 

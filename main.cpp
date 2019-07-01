@@ -9,7 +9,10 @@
 
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
+
+#ifdef KAFKA
 #include "KafkaConnector.h"
+#endif
 
 #ifdef DEBUG
 #include <ctime>

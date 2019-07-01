@@ -8,7 +8,7 @@
 1. [libtins](https://github.com/mfontanini/libtins.git)
 1. [Boost](https://dl.bintray.com/boostorg/release/)
 1. [librdkafka](https://github.com/edenhill/librdkafka.git)
-1. [cppkafka](https://github.com/mfontanini/cppkafka.git)
+1. [cppkafka](https://github.com/mfontanini/cppkafka.git) with param `CPPKAFKA_RDKAFKA_STATIC_LIB=ON`
 
 
 ## Run

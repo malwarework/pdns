@@ -1,5 +1,7 @@
 .idea
 cmake-build-debug
-FindPCAP.cmake
+cmake_install.cmake
+*.bak
+Makefile
 config.h
 passivedns

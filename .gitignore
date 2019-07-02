@@ -2,3 +2,4 @@
 cmake-build-debug
 FindPCAP.cmake
 config.h
+passivedns

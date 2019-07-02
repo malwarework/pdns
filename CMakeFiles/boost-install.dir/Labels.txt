@@ -1,0 +1,12 @@
+# Target labels
+ boost
+# Source files and their labels
+/tmp/pdns/CMakeFiles/boost-install
+/tmp/pdns/CMakeFiles/boost-install.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-install.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-build.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-configure.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-update.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-patch.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-download.rule
+/tmp/pdns/boost-prefix/src/boost-stamp/boost-mkdir.rule

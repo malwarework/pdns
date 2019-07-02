@@ -1,0 +1,40 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/tmp/pdns/CMakeFiles/json-install"
+		},
+		{
+			"file" : "/tmp/pdns/CMakeFiles/json-install.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-install.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-build.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-configure.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-update.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-patch.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-download.rule"
+		},
+		{
+			"file" : "/tmp/pdns/json-prefix/src/json-stamp/json-mkdir.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"json"
+		],
+		"name" : "json-install"
+	}
+}

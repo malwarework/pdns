@@ -1,0 +1,12 @@
+/tmp/pdns/CMakeFiles/rebuild_cache.dir
+/tmp/pdns/CMakeFiles/json-install.dir
+/tmp/pdns/CMakeFiles/libtins-build.dir
+/tmp/pdns/CMakeFiles/boost.dir
+/tmp/pdns/CMakeFiles/edit_cache.dir
+/tmp/pdns/CMakeFiles/libtins-install.dir
+/tmp/pdns/CMakeFiles/passivedns.dir
+/tmp/pdns/CMakeFiles/boost-build.dir
+/tmp/pdns/CMakeFiles/libtins.dir
+/tmp/pdns/CMakeFiles/boost-install.dir
+/tmp/pdns/CMakeFiles/json.dir
+/tmp/pdns/CMakeFiles/json-build.dir

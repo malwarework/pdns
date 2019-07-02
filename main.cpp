@@ -97,6 +97,7 @@ void converttojson(std::vector<Candidate>& _L)
     for (Candidate value : L)
     {
         json j;
+	j["time"] = value.t;
         j["domain"] = value.domain;
         j["T"] = value.ttl;
         j["Q"] = value.q;
@@ -109,9 +110,7 @@ void converttojson(std::vector<Candidate>& _L)
 #endif
         jv.push_back(j);
     }
-#ifdef KAKFA
     kafka.push(jv);
-#endif
     L_mutex.unlock();
 }
 
@@ -199,7 +198,7 @@ int main(int argc, char* argv[]) {
 #ifdef DEBUG
     timer_start(F2a, 300);
     // :TODO Set starting process on certain time
-    timer_start(converttojson, 10, true);
+    timer_start(converttojson, 900, false);
 #elif
     timer_start(F2a, CRON_TIME);
     // :TODO Set starting process on certain time

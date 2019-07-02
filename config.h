@@ -2,6 +2,6 @@
 #define IP_TYPE std::string
 #define DEBUG
 #define ERROR
-//#define KAFKA
+#define KAFKA
 #define UPLOAD_HOUR 24
 #define CRON_TIME 3

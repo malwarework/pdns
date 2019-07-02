@@ -1,3 +1,0 @@
-repository='https://github.com/mfontanini/libtins.git'
-module=''
-tag=''

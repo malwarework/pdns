@@ -1,1 +1,0 @@
-cmd='/usr/local/bin/cmake;-DLIBTINS_ENABLE_CXX11=1;-GUnix Makefiles;<SOURCE_DIR><SOURCE_SUBDIR>'

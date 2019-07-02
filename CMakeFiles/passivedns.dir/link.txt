@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11 -pthread -lcppkafka -lrdkafka++   CMakeFiles/passivedns.dir/main.cpp.o CMakeFiles/passivedns.dir/TrafficeVolumeReduction.cpp.o CMakeFiles/passivedns.dir/PeriodicListPrunning.cpp.o CMakeFiles/passivedns.dir/KafkaConnector.cpp.o  -o passivedns 

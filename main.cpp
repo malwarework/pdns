@@ -191,10 +191,10 @@ bool callback(const PDU& pdu) {
 
 
 int main(int argc, char* argv[]) {
-    boost::property_tree::ptree pt;
-    boost::property_tree::ini_parser::read_ini("passivedns.conf", pt);
-    std::cout << pt.get<std::string>("Default.UPLOAD_HOUR") << std::endl;
-    std::cout << pt.get<std::string>("Default.CRON_TIME") << std::endl;
+//    boost::property_tree::ptree pt;
+//    boost::property_tree::ini_parser::read_ini("passivedns.conf", pt);
+//    std::cout << pt.get<std::string>("Default.UPLOAD_HOUR") << std::endl;
+//    std::cout << pt.get<std::string>("Default.CRON_TIME") << std::endl;
     if(argc != 2) {
         #ifdef DEBUG
             cout << "Usage: " <<* argv << " <interface>" << endl;

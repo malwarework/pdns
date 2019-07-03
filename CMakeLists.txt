@@ -3,7 +3,8 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 cmake_minimum_required(VERSION 3.14)
 project(passivedns)
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypt -lcppkafka -lrdkafka++")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypt -lcppkafka -lrdkafka++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypt -lrdkafka++")
 
 set( BUILD_DIR ${CMAKE_BINARY_DIR}/build)
 set( SRC_DIR ${CMAKE_BINARY_DIR}/src)
@@ -118,5 +119,5 @@ externalproject_add_steptargets(cppkafka build install)
 
 add_dependencies(passivedns boost librdkafka json libtins cppkafka)
 
-
+target_include_directories(passivedns PUBLIC ${boost_INCLUDE_DIR} ${librdkafka_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR} ${cppkafka_INCLUDE_DIR})
 target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}")

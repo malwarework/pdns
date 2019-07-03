@@ -5,3 +5,12 @@ cmake_install.cmake
 Makefile
 config.h
 passivedns
+CMakeFiles
+boost
+build
+cppkafka
+json
+librdkafka
+libtins
+src
+

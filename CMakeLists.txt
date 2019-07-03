@@ -120,4 +120,3 @@ add_dependencies(passivedns boost librdkafka json libtins cppkafka)
 
 
 target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}")
-#target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "/usr/local/lib64/libcppkafka.so")

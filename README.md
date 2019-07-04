@@ -3,6 +3,8 @@
 ## Requirements
 1. C++11 and higher
 1. G++
+1. Python headers `python-dev`
+1. ZLIB
 1. [CMake](https://cmake.org/download/ )*(greater or equal 3.14)*
 1. [nlohmann/json](https://github.com/nlohmann/json.git)
 1. [libtins](https://github.com/mfontanini/libtins.git)

@@ -193,8 +193,11 @@ bool callback(const PDU& pdu) {
 int main(int argc, char* argv[]) {
     boost::property_tree::ptree pt;
     boost::property_tree::ini_parser::read_ini("passivedns.conf", pt);
-    std::cout << pt.get<std::int>("Global.UPLOAD_HOUR") << std::endl;
-    std::cout << pt.get<std::int>("Global.CRON_TIME") << std::endl;
+    int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
+    int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));
+
+    std::cout << upload_hour << std::endl;
+    std::cout << cron_time << std::endl;
     if(argc != 2) {
         #ifdef DEBUG
             cout << "Usage: " <<* argv << " <interface>" << endl;

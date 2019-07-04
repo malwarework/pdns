@@ -4,11 +4,13 @@
 
 #include "KafkaConnector.h"
 
-KafkaConnector::KafkaConnector() {
+KafkaConnector::KafkaConnector(std::string broker_list, std::string topic) {
     Configuration config = {
-            { "metadata.broker.list", "1.broker.kafka.prod:9092,2.broker.kafka.prod:9092,3.broker.kafka.prod:9092,4.broker.kafka.prod:9092,5.broker.kafka.prod:9092" }
+            { "metadata.broker.list", broker_list}
     };
     this->producer = new Producer(config);
+    this->topic = topic;
+
 }
 
 void KafkaConnector::push(std::vector<json>& L)
@@ -16,6 +18,6 @@ void KafkaConnector::push(std::vector<json>& L)
     for (json value : L)
     {
         string payload = value.dump();
-        this->producer->produce(MessageBuilder("CLICK_HOUSE_FASTFLUX_PDNS").payload(payload));
+        this->producer->produce(MessageBuilder(this->topic).payload(payload));
     }
 }

@@ -110,7 +110,7 @@ void converttojson(std::vector<Candidate>& _L)
         jv.push_back(j);
     }
 #ifdef KAFKA
-    KafkaConnector kafka;
+    KafkaConnector kafka("1.broker.kafka.prod:9092,2.broker.kafka.prod:9092,3.broker.kafka.prod:9092,4.broker.kafka.prod:9092,5.broker.kafka.prod:9092", "CLICK_HOUSE_FASTFLUX_PDNS");
     kafka.push(jv);
 #endif
     L.clear();

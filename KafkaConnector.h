@@ -17,8 +17,9 @@ using namespace cppkafka;
 class KafkaConnector {
 private:
     Producer *producer;
+    std::string topic;
 public:
-    KafkaConnector();
+    KafkaConnector(std::string, std::string);
     void push(std::vector<json>&);
 };
 

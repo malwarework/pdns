@@ -9,25 +9,27 @@ before_install:
 language: cpp
 compiler:
   - g++
-  - clang
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+  - travis_retry wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.14.5.tar.gz
+  - tar -xvf cmake-3.14.5.tar.gz > /dev/null
+  - mv cmake-3.14.5 cmake-install
+  - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
+  - cd ${TRAVIS_BUILD_DIR}
 
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
-      CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.14.5.tar.gz"
-      mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
-      echo $PATH
-    fi
-
-  # Go to the Root directory
-  - cd ..
-
-# Build steps
-script:
+before_script:
+  # create a build folder for the out-of-source build
   - mkdir build
+  # switch to build directory
   - cd build
-  - cmake .. && make
+  # run cmake; here we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  - cmake ..
+
+script:
+  # once CMake has done its job we just build using make as usual
+  - make
+  # if the project uses ctest we can run the tests like this
+  - make test

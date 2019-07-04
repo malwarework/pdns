@@ -14,4 +14,4 @@
 
 
 ## Run
-`./passivedns [eth0]`
+`./passivedns -i [eth0]`

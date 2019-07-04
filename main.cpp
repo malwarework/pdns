@@ -160,7 +160,8 @@ bool callback(const PDU& pdu) {
 
     for (const auto& answer : dns.answers()){
         if (answer.query_type() == DNS::A){
-            _dns.domain = answer.dname();
+            _dns.domain = trim_left_if(answer.dname(), is_any_of("www."));
+            //_dns.domain = answer.dname();
             _dns.ttl = answer.ttl();
             try{
                 _dns.ips.insert(answer.data());

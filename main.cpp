@@ -8,6 +8,7 @@
 #include <cppkafka/cppkafka.h>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
+#include <boost/program_options.hpp>
 
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
@@ -193,8 +194,45 @@ bool callback(const PDU& pdu) {
 
 
 int main(int argc, char* argv[]) {
+    po::options_description desc("Allowed options");
+    desc.add_options()
+            ("help,h", "produce help message")
+            ("interface,i", po::value<string>(), "set interface")
+            ("config,c", po::value<string>(), "config file path")
+            ("json", "set json output format");
+
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, (const char**)argv, desc), vm);
+    po::notify(vm);
+
+    /*In case if help*/
+    if(vm.count("help"))
+    {
+        cout << desc << "\n";
+        return 1;
+    }
+
+    /*config file path*/
+    string configfile = "passivedns.conf";
+    if(vm.count("config"))
+    {
+        configfile = vm["config"].as<string>();
+    }
+
+    string interface;
+    /*In case if interface*/
+    if(vm.count("dev"))
+    {
+        interface = vm["interface"].as<string>();
+    }
+    else
+    {
+        cout << "Please specify interface" << endl << "Use prefix -h" << endl;
+        return 1;
+    }
+
     boost::property_tree::ptree pt;
-    boost::property_tree::ini_parser::read_ini("passivedns.conf", pt);
+    boost::property_tree::ini_parser::read_ini(configfile, pt);
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));
 
@@ -216,7 +254,7 @@ int main(int argc, char* argv[]) {
     config.set_promisc_mode(true);
     // Only capture udp packets sent to port 53
     config.set_filter("udp and src port 53");
-    Sniffer sniffer(argv[1], config);
+    Sniffer sniffer(interface, config);
 
     // Start the capture
     sniffer.sniff_loop(callback);

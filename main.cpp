@@ -160,8 +160,8 @@ bool callback(const PDU& pdu) {
 
     for (const auto& answer : dns.answers()){
         if (answer.query_type() == DNS::A){
-            _dns.domain = trim_left_if(answer.dname(), is_any_of("www."));
-            //_dns.domain = answer.dname();
+            _dns.domain = answer.dname();
+            trim_left_if(_dns.domain, boost::is_any_of("www."));
             _dns.ttl = answer.ttl();
             try{
                 _dns.ips.insert(answer.data());
@@ -175,6 +175,7 @@ bool callback(const PDU& pdu) {
         }
         if (answer.query_type() == DNS::CNAME){
             _dns.domain = answer.dname();
+            trim_left_if(_dns.domain, boost::is_any_of("www."));
             _dns.ttl = answer.ttl();
             std::set<IP_TYPE> _ips = resolveDomain(answer.data());
             _dns.ips.insert(_ips.begin(), _ips.end());

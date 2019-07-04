@@ -3,5 +3,3 @@
 #define DEBUG
 #define ERROR
 #define KAFKA
-#define UPLOAD_HOUR 24
-#define CRON_TIME 3

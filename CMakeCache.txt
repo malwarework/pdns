@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=/usr/lib/cmake/Boost-1.70.0
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -207,10 +210,22 @@ CPPKAFKA_LIBRARY:FILEPATH=/tmp/pdns/src/cppkafka/lib/libcppkafka.so
 GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 
 //Path to a library.
+OPTIONS_LIBRARY:FILEPATH=/tmp/pdns/src/boost/lib/libboost_program_options.so
+
+//Path to a library.
+PROGRAM_OPTIONS_LIBRARY:FILEPATH=PROGRAM_OPTIONS_LIBRARY-NOTFOUND
+
+//Path to a library.
 RDKAFKA_LIBRARY:FILEPATH=/tmp/pdns/src/librdkafka/lib/librdkafka++.so
 
 //Path to a library.
 TINS_LIBRARY:FILEPATH=/tmp/pdns/src/libtins/lib/libtins.so
+
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/usr/lib/cmake/boost_headers-1.70.0
+
+//The directory containing a CMake configuration file for boost_program_options.
+boost_program_options_DIR:PATH=/usr/lib/cmake/boost_program_options-1.70.0
 
 //The directory containing a CMake configuration file for nlohmann_json.
 nlohmann_json_DIR:PATH=/usr/local/lib/cmake/nlohmann_json
@@ -226,6 +241,8 @@ passivedns_SOURCE_DIR:STATIC=/tmp/pdns
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created

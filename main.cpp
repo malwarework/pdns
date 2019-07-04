@@ -22,7 +22,7 @@ using std::cout;
 using std::endl;
 using json = nlohmann::json;
 using namespace cppkafka;
-using namespace po = boost::program_options;
+using namespace boost::program_options;
 using namespace Tins;
 using namespace std;
 
@@ -190,16 +190,17 @@ bool callback(const PDU& pdu) {
 
 
 int main(int argc, char* argv[]) {
-    po::options_description desc("Allowed options");
+    options_description desc("Allowed options");
     desc.add_options()
             ("help,h", "produce help message")
-            ("interface,i", po::value<string>(), "set interface")
-            ("config,c", po::value<string>(), "config file path")
-            ("json", "set json output format");
+            ("interface,i", value<string>(), "set interface")
+            ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
+    ;
 
-    po::variables_map vm;
-    po::store(po::parse_command_line(argc, (const char**)argv, desc), vm);
-    po::notify(vm);
+    variables_map vm;
+    parsed_options parsed = command_line_parser(argc, argv).options(desc).allow_unregistered().run();
+    store(parsed, vm);
+    notify(vm);
 
     /*In case if help*/
     if(vm.count("help"))
@@ -209,7 +210,7 @@ int main(int argc, char* argv[]) {
     }
 
     /*config file path*/
-    string configfile = "passivedns.conf";
+    string configfile;
     if(vm.count("config"))
     {
         configfile = vm["config"].as<string>();
@@ -217,7 +218,7 @@ int main(int argc, char* argv[]) {
 
     string interface;
     /*In case if interface*/
-    if(vm.count("dev"))
+    if(vm.count("interface"))
     {
         interface = vm["interface"].as<string>();
     }
@@ -232,12 +233,13 @@ int main(int argc, char* argv[]) {
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));
 
-    if(argc != 2) {
+/*    if(argc != 2) {
         #ifdef DEBUG
             cout << "Usage: " <<* argv << " <interface>" << endl;
         #endif
         return 1;
     }
+*/
 #ifdef DEBUG
     timer_start(F2a, 300);
     timer_start(converttojson, 900, false);

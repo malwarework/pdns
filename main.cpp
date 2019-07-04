@@ -17,16 +17,12 @@
 #include "KafkaConnector.h"
 #endif
 
-#ifdef DEBUG
-#include <ctime>
-#endif
-
 
 using std::cout;
 using std::endl;
 using json = nlohmann::json;
 using namespace cppkafka;
-
+using namespace po = boost::program_options;
 using namespace Tins;
 using namespace std;
 

@@ -6,6 +6,7 @@ Makefile
 config.h
 passivedns
 CMakeFiles
+CMakeCache.txt
 boost
 build
 cppkafka

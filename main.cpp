@@ -206,14 +206,11 @@ int main(int argc, char* argv[]) {
     }
 #ifdef DEBUG
     timer_start(F2a, 300);
-    // :TODO Set starting process on certain time
     timer_start(converttojson, 900, false);
 #elif
     timer_start(F2a, cron_time);
-    // :TODO Set starting process on certain time
     timer_start(converttojson, upload_hour, true);
 #endif
-
     // Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;
     config.set_promisc_mode(true);

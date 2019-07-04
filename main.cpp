@@ -196,8 +196,6 @@ int main(int argc, char* argv[]) {
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));
 
-    std::cout << upload_hour << std::endl;
-    std::cout << cron_time << std::endl;
     if(argc != 2) {
         #ifdef DEBUG
             cout << "Usage: " <<* argv << " <interface>" << endl;
@@ -209,11 +207,10 @@ int main(int argc, char* argv[]) {
     // :TODO Set starting process on certain time
     timer_start(converttojson, 900, false);
 #elif
-    timer_start(F2a, CRON_TIME);
+    timer_start(F2a, cron_time);
     // :TODO Set starting process on certain time
-    timer_start(converttojson, UPLOAD_HOUR, true);
+    timer_start(converttojson, upload_hour, true);
 #endif
-
 
     // Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;

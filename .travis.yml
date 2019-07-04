@@ -1,0 +1,11 @@
+sudo: required
+before_install:
+  - sudo apt-get install g++
+  - sudo apt-get install python-dev
+  - sudo apt-get install zlib1g-dev
+  - sudo apt-get install openssl openssl-dev
+
+language: cpp
+compiler:
+  - g++
+  - gcc

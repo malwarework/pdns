@@ -242,13 +242,13 @@ int main(int argc, char* argv[])
         {
             exit(EXIT_SUCCESS);
         }
-        elif (pid < 0)
+        else if (pid < 0)
         {
             exit(EXIT_FAILURE);
         }
         umask(0);
-        openlog("daemon-named", LOG_NOWAIT | LOG_PID, LOG_USER);
-        syslog(LOG_NOTICE, "Successfully started daemon-name");
+        openlog("passivedns", LOG_NOWAIT | LOG_PID, LOG_USER);
+        syslog(LOG_NOTICE, "Successfully started passivedns");
         sid = setsid();
         if(sid < 0)
         {

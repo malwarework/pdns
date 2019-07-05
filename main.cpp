@@ -9,6 +9,9 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/program_options.hpp>
+#include <unistd.h>
+#include <syslog.h>
+#include <sys/stat.h>
 
 #include "TrafficeVolumeReduction.h"
 #include "PeriodicListPrunning.h"
@@ -199,12 +202,14 @@ bool callback(const PDU& pdu)
 
 int main(int argc, char* argv[])
 {
+    pid_t pid, sid;
     boost::property_tree::ptree pt;
 
     options_description desc("Allowed options");
     desc.add_options()
             ("help,h", "produce help message")
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
+            ("daemon,d", "config file path")
     ;
 
     variables_map vm;
@@ -230,6 +235,43 @@ int main(int argc, char* argv[])
     broker_list = pt.get<std::string>("Kafka.brokers");
     topic = pt.get<std::string>("Kafka.topic");
 
+    if(vm.count("daemon"))
+    {
+        pid = fork();
+        if (pid>0)
+        {
+            exit(EXIT_SUCCESS);
+        }
+        elif (pid < 0)
+        {
+            exit(EXIT_FAILURE);
+        }
+        umask(0);
+        openlog("daemon-named", LOG_NOWAIT | LOG_PID, LOG_USER);
+        syslog(LOG_NOTICE, "Successfully started daemon-name");
+        sid = setsid();
+        if(sid < 0)
+        {
+            // Log failure and exit
+            syslog(LOG_ERR, "Could not generate session ID for child process");
+
+            // If a new session ID could not be generated, we must terminate the child process
+            // or it will be orphaned
+            exit(EXIT_FAILURE);
+        }
+        if((chdir("/")) < 0)
+        {
+            // Log failure and exit
+            syslog(LOG_ERR, "Could not change working directory to /");
+
+            // If our guaranteed directory does not exist, terminate the child process to ensure
+            // the daemon has not been hijacked
+            exit(EXIT_FAILURE);
+        }
+        close(STDIN_FILENO);
+        close(STDOUT_FILENO);
+        close(STDERR_FILENO);
+    }
 #ifdef DEBUG
     timer_start(F2a, 300);
     timer_start(converttojson, 900, false);
@@ -248,4 +290,9 @@ int main(int argc, char* argv[])
 
     // Start the capture
     sniffer.sniff_loop(callback);
+    syslog(LOG_NOTICE, "Stopping daemon-name");
+    closelog();
+
+    // Terminate the child process when the daemon completes
+    exit(EXIT_SUCCESS);
 }

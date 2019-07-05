@@ -16,8 +16,8 @@ using namespace cppkafka;
 
 class KafkaConnector {
 private:
-    Producer *producer;
     std::string topic;
+    Configuration config
 public:
     KafkaConnector(std::string, std::string);
     ~KafkaConnector();

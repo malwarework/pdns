@@ -5,10 +5,12 @@
 #include "KafkaConnector.h"
 
 KafkaConnector::KafkaConnector(std::string broker_list, std::string topic) {
+    this->config = {
+            { "metadata.broker.list", broker_list}
+    };
     Configuration config = {
             { "metadata.broker.list", broker_list}
     };
-    this->producer = new Producer(config);
     this->topic = topic;
 
 }
@@ -20,9 +22,10 @@ KafkaConnector::~KafkaConnector()
 
 void KafkaConnector::push(std::vector<json>& L)
 {
+    Producer producer(this->config);
     for (json value : L)
     {
         string payload = value.dump();
-        this->producer->produce(MessageBuilder(this->topic).payload(payload));
+        producer.produce(MessageBuilder(this->topic).payload(payload));
     }
 }

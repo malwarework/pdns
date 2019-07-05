@@ -29,6 +29,9 @@ using namespace std;
 std::vector<Candidate> L;
 std::mutex L_mutex;
 
+string broker_list;
+string topic;
+
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
     PeriodicListPrunning filter2;
@@ -110,7 +113,7 @@ void converttojson(std::vector<Candidate>& _L)
         jv.push_back(j);
     }
 #ifdef KAFKA
-    KafkaConnector kafka("1.broker.kafka.prod:9092,2.broker.kafka.prod:9092,3.broker.kafka.prod:9092,4.broker.kafka.prod:9092,5.broker.kafka.prod:9092", "CLICK_HOUSE_FASTFLUX_PDNS");
+    KafkaConnector kafka(broker_list, topic);
     kafka.push(jv);
 #endif
     L.clear();
@@ -224,6 +227,8 @@ int main(int argc, char* argv[])
     }
     boost::property_tree::ini_parser::read_ini(configfile, pt);
     string interface = pt.get<std::string>("Global.interface");
+    broker_list = pt.get<std::string>("Kafka.brokers");
+    topic = pt.get<std::string>("Kafka.topic");
 
 #ifdef DEBUG
     timer_start(F2a, 300);

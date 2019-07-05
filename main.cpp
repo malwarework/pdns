@@ -118,7 +118,6 @@ void converttojson(std::vector<Candidate>& _L)
 #ifdef KAFKA
     KafkaConnector kafka(broker_list, topic);
     kafka.push(jv);
-    ~kafka();
 #endif
     L.clear();
     L_mutex.unlock();

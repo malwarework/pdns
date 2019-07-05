@@ -20,6 +20,7 @@ private:
     std::string topic;
 public:
     KafkaConnector(std::string, std::string);
+    ~KafkaConnector();
     void push(std::vector<json>&);
 };
 

@@ -13,6 +13,11 @@ KafkaConnector::KafkaConnector(std::string broker_list, std::string topic) {
 
 }
 
+KafkaConnector::~KafkaConnector()
+{
+    cout << "Close connection" << endl;
+}
+
 void KafkaConnector::push(std::vector<json>& L)
 {
     for (json value : L)

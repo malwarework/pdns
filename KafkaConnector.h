@@ -17,7 +17,7 @@ using namespace cppkafka;
 class KafkaConnector {
 private:
     std::string topic;
-    Configuration config
+    Configuration config;
 public:
     KafkaConnector(std::string, std::string);
     ~KafkaConnector();

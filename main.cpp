@@ -209,7 +209,7 @@ int main(int argc, char* argv[])
     desc.add_options()
             ("help,h", "produce help message")
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
-            ("daemon,d", "config file path")
+            ("daemon,d", "daemonize passivedns")
     ;
 
     variables_map vm;

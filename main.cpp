@@ -209,8 +209,7 @@ int main(int argc, char* argv[])
     desc.add_options()
             ("help,h", "produce help message")
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
-            ("daemon,d", "daemonize passivedns")
-    ;
+            ("daemon,d", "daemonize passivedns");
 
     variables_map vm;
     parsed_options parsed = command_line_parser(argc, argv).options(desc).allow_unregistered().run();
@@ -220,7 +219,7 @@ int main(int argc, char* argv[])
     /*In case if help*/
     if(vm.count("help"))
     {
-        cout << desc << "\n";
+        cout << desc << endl;
         return 1;
     }
 

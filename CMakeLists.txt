@@ -10,6 +10,7 @@ set( BUILD_DIR ${CMAKE_BINARY_DIR}/build)
 set( SRC_DIR ${CMAKE_BINARY_DIR}/src)
 
 set(Boost_DEBUG 1)
+set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 set( boost_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/boost )
 set( boost_INCLUDE_DIR ${boost_INSTALL}/include )

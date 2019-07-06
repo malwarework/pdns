@@ -41,26 +41,26 @@ message(${cppkafka_INSTALL})
 include(ExternalProject)
 #boost
 externalproject_add(boost
-		BUILD_IN_SOURCE		1
-		PREFIX			boost
-		URL			https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
-		TLS_VERIFY		0
-		CONFIGURE_COMMAND	./bootstrap.sh --prefix=<INSTALL_DIR>
-		UPDATE_COMMAND		""
-		BUILD_COMMAND		./b2 install
-		INSTALL_COMMAND		""
-		INSTALL_DIR		${boost_INSTALL}
+		BUILD_IN_SOURCE			1
+		PREFIX					boost
+		URL						https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
+		TLS_VERIFY				0
+		CONFIGURE_COMMAND		./bootstrap.sh --prefix=<INSTALL_DIR>
+		UPDATE_COMMAND			""
+		BUILD_COMMAND			./b2 install
+		INSTALL_COMMAND			""
+		INSTALL_DIR				${boost_INSTALL}
 		)
 externalproject_add_steptargets(boost build install)
 
 # LibrdKafka
 externalproject_add(librdkafka
-		BUILD_IN_SOURCE         1
-		DEPENDS			boost
-		PREFIX			librdkafka
-		GIT_REPOSITORY		https://github.com/edenhill/librdkafka.git
-		CONFIGURE_COMMAND	./configure --prefix=<INSTALL_DIR>
-		INSTALL_DIR		${librdkafka_INSTALL}
+		BUILD_IN_SOURCE      	1
+		DEPENDS					boost
+		PREFIX					librdkafka
+		GIT_REPOSITORY			https://github.com/edenhill/librdkafka.git
+		CONFIGURE_COMMAND		./configure --prefix=<INSTALL_DIR>
+		INSTALL_DIR				${librdkafka_INSTALL}
 		)
 externalproject_add_steptargets(librdkafka build install)
 
@@ -98,23 +98,23 @@ externalproject_add(cppkafka
 externalproject_add_steptargets(cppkafka build install)
 
 
-find_package(nlohmann_json 3.2.0 REQUIRED)
-find_library(OPTIONS_LIBRARY
-		boost_program_options
-		PATHS ${boost_LIB_DIR}
-		NO_DEFAULT_PATH)
-find_library(RDKAFKA_LIBRARY
-		rdkafka++
-		PATHS ${librdkafka_LIB_DIR}
-		NO_DEFAULT_PATH)
-find_library(CPPKAFKA_LIBRARY
-		cppkafka
-		PATHS ${cppkafka_LIB_DIR}
-		NO_DEFAULT_PATH)
-find_library(TINS_LIBRARY
-		tins
-		${libtins_LIB_DIR}
-		NO_DEFAULT_PATH)
+#find_package(nlohmann_json 3.2.0 REQUIRED)
+#find_library(OPTIONS_LIBRARY
+#		boost_program_options
+#		PATHS ${boost_LIB_DIR}
+#		NO_DEFAULT_PATH)
+#find_library(RDKAFKA_LIBRARY
+#		rdkafka++
+#		PATHS ${librdkafka_LIB_DIR}
+#		NO_DEFAULT_PATH)
+#find_library(CPPKAFKA_LIBRARY
+#		cppkafka
+#		PATHS ${cppkafka_LIB_DIR}
+#		NO_DEFAULT_PATH)
+#find_library(TINS_LIBRARY
+#		tins
+#		${libtins_LIB_DIR}
+#		NO_DEFAULT_PATH)
 #message(${RDKAFKA_LIBRARY})
 #message(${CPPKAFKA_LIBRARY})
 #message(${TINS_LIBRARY})

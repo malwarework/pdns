@@ -8,17 +8,9 @@ KafkaConnector::KafkaConnector(std::string broker_list, std::string topic) {
     this->config = {
             { "metadata.broker.list", broker_list}
     };
-    Configuration config = {
-            { "metadata.broker.list", broker_list}
-    };
     this->topic = topic;
-
 }
 
-KafkaConnector::~KafkaConnector()
-{
-    cout << "Close connection" << endl;
-}
 
 void KafkaConnector::push(std::vector<json>& L)
 {

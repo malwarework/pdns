@@ -131,9 +131,9 @@ find_library(TINS_LIBRARY
 if (NOT TINS_LIBRARY)
 	message("Cant find TINS_LIBRARY")
 endif ()
-#message(${RDKAFKA_LIBRARY})
-#message(${CPPKAFKA_LIBRARY})
-#message(${TINS_LIBRARY})
+message(${RDKAFKA_LIBRARY})
+message(${CPPKAFKA_LIBRARY})
+message(${TINS_LIBRARY})
 
 set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h KafkaConnector.cpp KafkaConnector.h)
 add_executable(passivedns ${SOURCE_FILES})

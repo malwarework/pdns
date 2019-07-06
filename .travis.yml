@@ -23,7 +23,7 @@ install:
 before_script:
   # run cmake; here we assume that the project's
   # top-level CMakeLists.txt is located at '..'
-  - cmake CMakeExternal.txt
+  - cmake .
 
 script:
   - cppcheck --quiet --error-exitcode=1 *.cpp

@@ -1,4 +1,5 @@
 # passive dns
+https://travis-ci.com/sidorenko69/pdns.svg?token=wwQZr2XUtpzPdKqcF1eA&branch=installation
 
 ## Requirements
 1. C++11 and higher

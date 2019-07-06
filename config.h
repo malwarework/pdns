@@ -3,4 +3,3 @@
 #define DEBUG
 #define ERROR
 #define KAFKA
-#define SYSLOG

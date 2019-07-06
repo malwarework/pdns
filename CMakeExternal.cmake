@@ -1,5 +1,5 @@
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
-
+message("START")
 cmake_minimum_required(VERSION 3.9.2)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypt -lrdkafka++")
@@ -94,3 +94,4 @@ externalproject_add(cppkafka
         INSTALL_DIR             ${cppkafka_INSTALL}
         )
 externalproject_add_steptargets(cppkafka build install)
+message("STOP")

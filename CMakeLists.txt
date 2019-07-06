@@ -98,23 +98,23 @@ include(CMakeExternal.cmake)
 #externalproject_add_steptargets(cppkafka build install)
 #
 
-find_package(nlohmann_json 3.2.0 REQUIRED)
-find_library(OPTIONS_LIBRARY
-		boost_program_options
-		PATHS ${boost_LIB_DIR}
-		NO_DEFAULT_PATH)
-find_library(RDKAFKA_LIBRARY
-		rdkafka++
-		PATHS ${librdkafka_LIB_DIR}
-		NO_DEFAULT_PATH)
-find_library(CPPKAFKA_LIBRARY
-		cppkafka
-		PATHS ${cppkafka_LIB_DIR}
-		NO_DEFAULT_PATH)
-find_library(TINS_LIBRARY
-		tins
-		${libtins_LIB_DIR}
-		NO_DEFAULT_PATH)
+#find_package(nlohmann_json 3.2.0 REQUIRED)
+#find_library(OPTIONS_LIBRARY
+#		boost_program_options
+#		PATHS ${boost_LIB_DIR}
+#		NO_DEFAULT_PATH)
+#find_library(RDKAFKA_LIBRARY
+#		rdkafka++
+#		PATHS ${librdkafka_LIB_DIR}
+#		NO_DEFAULT_PATH)
+#find_library(CPPKAFKA_LIBRARY
+#		cppkafka
+#		PATHS ${cppkafka_LIB_DIR}
+#		NO_DEFAULT_PATH)
+#find_library(TINS_LIBRARY
+#		tins
+#		${libtins_LIB_DIR}
+#	NO_DEFAULT_PATH)
 
 set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h KafkaConnector.cpp KafkaConnector.h)
 add_executable(passivedns ${SOURCE_FILES})

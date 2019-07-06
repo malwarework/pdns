@@ -98,7 +98,7 @@ externalproject_add(cppkafka
 externalproject_add_steptargets(cppkafka build install)
 
 
-#find_package(nlohmann_json 3.2.0 REQUIRED)
+find_package(nlohmann_json 3.2.0 REQUIRED)
 
 find_library(OPTIONS_LIBRARY
 		boost_program_options
@@ -143,5 +143,5 @@ add_dependencies(passivedns boost librdkafka json libtins cppkafka)
 target_include_directories(passivedns PUBLIC ${boost_INCLUDE_DIR} ${librdkafka_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR} ${cppkafka_INCLUDE_DIR})
 target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}" ${OPTIONS_LIBRARY})
 
-#install(TARGETS passivedns CONFIGURATIONS Debug RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)
-#install(FILES passivedns.conf PERMISSIONS WORLD_EXECUTE TYPE SYSCONF)
+install(TARGETS passivedns CONFIGURATIONS Debug RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)
+install(FILES passivedns.conf PERMISSIONS WORLD_EXECUTE TYPE SYSCONF)

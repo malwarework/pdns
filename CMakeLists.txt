@@ -14,31 +14,31 @@ set(Boost_DEBUG 1)
 set( boost_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/boost )
 set( boost_INCLUDE_DIR ${boost_INSTALL}/include )
 set( boost_LIB_DIR ${boost_INSTALL}/lib )
-message(${boost_INSTALL})
+#message(${boost_INSTALL})
 
 set( librdkafka_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/librdkafka )
 set( librdkafka_INCLUDE_DIR ${librdkafka_INSTALL}/include )
 set( librdkafka_LIB_DIR ${librdkafka_INSTALL}/lib )
-message(${librdkafka_INSTALL})
+#message(${librdkafka_INSTALL})
 
 set( json_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/json )
 set( json_INCLUDE_DIR ${json_INSTALL}/include )
 set( json_LIB_DIR ${json_INSTALL}/lib )
-message(${json_INSTALL})
+#message(${json_INSTALL})
 
 set( libtins_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/libtins )
 set( libtins_INCLUDE_DIR ${libtins_INSTALL}/include )
 set( libtins_LIB_DIR ${libtins_INSTALL}/lib )
-message(${libtins_INSTALL})
+#message(${libtins_INSTALL})
 
 set( cppkafka_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/cppkafka )
 set( cppkafka_INCLUDE_DIR ${cppkafka_INSTALL}/include )
 set( cppkafka_LIB_DIR ${cppkafka_INSTALL}/lib )
-message(${cppkafka_INSTALL})
+#message(${cppkafka_INSTALL})
 
 
 
-#include(CMakeExternal.cmake)
+include(ExternalProject)
 #boost
 externalproject_add(boost
 		BUILD_IN_SOURCE			1

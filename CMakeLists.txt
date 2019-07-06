@@ -38,67 +38,67 @@ message(${cppkafka_INSTALL})
 
 
 
-include(CMakeExternal.cmake)
-##boost
-#externalproject_add(boost
-#		BUILD_IN_SOURCE			1
-#		PREFIX					boost
-#		URL						https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
-#		TLS_VERIFY				0
-#		CONFIGURE_COMMAND		./bootstrap.sh --prefix=<INSTALL_DIR>
-#		UPDATE_COMMAND			""
-#		BUILD_COMMAND			./b2 install
-#		INSTALL_COMMAND			""
-#		INSTALL_DIR				${boost_INSTALL}
-#		)
-#externalproject_add_steptargets(boost build install)
-#
-## LibrdKafka
-#externalproject_add(librdkafka
-#		BUILD_IN_SOURCE      	1
-#		DEPENDS					boost
-#		PREFIX					librdkafka
-#		GIT_REPOSITORY			https://github.com/edenhill/librdkafka.git
-#		CONFIGURE_COMMAND		./configure --prefix=<INSTALL_DIR>
-#		INSTALL_DIR				${librdkafka_INSTALL}
-#		)
-#externalproject_add_steptargets(librdkafka build install)
-#
-##JSON
-#externalproject_add(json
-#		BUILD_IN_SOURCE         1
-#		DEPENDS                 boost
-#		PREFIX                  json
-#		GIT_REPOSITORY          https://github.com/nlohmann/json.git
-#		CMAKE_ARGS              -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
-#		INSTALL_DIR             ${json_INSTALL}
-#		)
-#externalproject_add_steptargets(json build install)
-#
-##Libtins
-#externalproject_add(libtins
-#		BUILD_IN_SOURCE         1
-#		DEPENDS                 boost
-#		PREFIX                  libtins
-#		GIT_REPOSITORY          https://github.com/mfontanini/libtins.git
-#		CMAKE_ARGS              -DLIBTINS_ENABLE_CXX11=1 -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
-#		INSTALL_DIR             ${libtins_INSTALL}
-#		)
-#externalproject_add_steptargets(libtins build install)
-#
-##CPPKafka
-#externalproject_add(cppkafka
-#		BUILD_IN_SOURCE         1
-#		DEPENDS                 librdkafka
-#		PREFIX                  cppkafka
-#		GIT_REPOSITORY          https://github.com/mfontanini/cppkafka.git
-#		CMAKE_ARGS              -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR> -DBOOST_ROOT=${boost_INSTALL}
-#		INSTALL_DIR             ${cppkafka_INSTALL}
-#		)
-#externalproject_add_steptargets(cppkafka build install)
-#
+#include(CMakeExternal.cmake)
+#boost
+externalproject_add(boost
+		BUILD_IN_SOURCE			1
+		PREFIX					boost
+		URL						https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
+		TLS_VERIFY				0
+		CONFIGURE_COMMAND		./bootstrap.sh --prefix=<INSTALL_DIR>
+		UPDATE_COMMAND			""
+		BUILD_COMMAND			./b2 install
+		INSTALL_COMMAND			""
+		INSTALL_DIR				${boost_INSTALL}
+		)
+externalproject_add_steptargets(boost build install)
 
-find_package(nlohmann_json 3.2.0 REQUIRED)
+# LibrdKafka
+externalproject_add(librdkafka
+		BUILD_IN_SOURCE      	1
+		DEPENDS					boost
+		PREFIX					librdkafka
+		GIT_REPOSITORY			https://github.com/edenhill/librdkafka.git
+		CONFIGURE_COMMAND		./configure --prefix=<INSTALL_DIR>
+		INSTALL_DIR				${librdkafka_INSTALL}
+		)
+externalproject_add_steptargets(librdkafka build install)
+
+#JSON
+externalproject_add(json
+		BUILD_IN_SOURCE         1
+		DEPENDS                 boost
+		PREFIX                  json
+		GIT_REPOSITORY          https://github.com/nlohmann/json.git
+		CMAKE_ARGS              -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+		INSTALL_DIR             ${json_INSTALL}
+		)
+externalproject_add_steptargets(json build install)
+
+#Libtins
+externalproject_add(libtins
+		BUILD_IN_SOURCE         1
+		DEPENDS                 boost
+		PREFIX                  libtins
+		GIT_REPOSITORY          https://github.com/mfontanini/libtins.git
+		CMAKE_ARGS              -DLIBTINS_ENABLE_CXX11=1 -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+		INSTALL_DIR             ${libtins_INSTALL}
+		)
+externalproject_add_steptargets(libtins build install)
+
+#CPPKafka
+externalproject_add(cppkafka
+		BUILD_IN_SOURCE         1
+		DEPENDS                 librdkafka
+		PREFIX                  cppkafka
+		GIT_REPOSITORY          https://github.com/mfontanini/cppkafka.git
+		CMAKE_ARGS              -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR> -DBOOST_ROOT=${boost_INSTALL}
+		INSTALL_DIR             ${cppkafka_INSTALL}
+		)
+externalproject_add_steptargets(cppkafka build install)
+
+
+#find_package(nlohmann_json 3.2.0 REQUIRED)
 find_library(OPTIONS_LIBRARY
 		boost_program_options
 		PATHS ${boost_LIB_DIR}

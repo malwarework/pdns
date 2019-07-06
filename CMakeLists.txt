@@ -10,7 +10,6 @@ set( BUILD_DIR ${CMAKE_BINARY_DIR}/build)
 set( SRC_DIR ${CMAKE_BINARY_DIR}/src)
 
 set(Boost_DEBUG 1)
-set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 set( boost_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/src/boost )
 set( boost_INCLUDE_DIR ${boost_INSTALL}/include )
@@ -115,11 +114,10 @@ find_library(CPPKAFKA_LIBRARY
 find_library(TINS_LIBRARY
 		tins
 		${libtins_LIB_DIR}
-	NO_DEFAULT_PATH)
+		NO_DEFAULT_PATH)
 
 set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h KafkaConnector.cpp KafkaConnector.h)
 add_executable(passivedns ${SOURCE_FILES})
-
 add_dependencies(passivedns boost librdkafka json libtins cppkafka)
 
 target_include_directories(passivedns PUBLIC ${boost_INCLUDE_DIR} ${librdkafka_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR} ${cppkafka_INCLUDE_DIR})

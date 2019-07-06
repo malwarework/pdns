@@ -104,18 +104,33 @@ find_library(OPTIONS_LIBRARY
 		boost_program_options
 		PATHS ${boost_LIB_DIR}
 		NO_DEFAULT_PATH)
+if (NOT OPTIONS_LIBRARY)
+	message("Cant find OPTIONS_LIBRARY")
+endif ()
+
 find_library(RDKAFKA_LIBRARY
 		rdkafka++
 		PATHS ${librdkafka_LIB_DIR}
 		NO_DEFAULT_PATH)
+if (NOT RDKAFKA_LIBRARY)
+	message("Cant find RDKAFKA_LIBRARY")
+endif ()
+
 find_library(CPPKAFKA_LIBRARY
 		cppkafka
 		PATHS ${cppkafka_LIB_DIR}
 		NO_DEFAULT_PATH)
+if (NOT CPPKAFKA_LIBRARY)
+	message("Cant find CPPKAFKA_LIBRARY")
+endif ()
+
 find_library(TINS_LIBRARY
 		tins
 		${libtins_LIB_DIR}
 		NO_DEFAULT_PATH)
+if (NOT TINS_LIBRARY)
+	message("Cant find TINS_LIBRARY")
+endif ()
 #message(${RDKAFKA_LIBRARY})
 #message(${CPPKAFKA_LIBRARY})
 #message(${TINS_LIBRARY})

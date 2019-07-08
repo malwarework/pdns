@@ -113,6 +113,9 @@ void converttojson(std::vector<Candidate>& _L)
 #ifdef DEBUG
         cout << j << endl;
 #endif
+#ifdef SYSLOG
+        syslog(LOG_ERR, "Could not generate session ID for child process");
+#endif
         jv.push_back(j);
     }
 #ifdef KAFKA

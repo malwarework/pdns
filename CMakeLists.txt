@@ -36,7 +36,7 @@ set( cppkafka_INCLUDE_DIR ${cppkafka_INSTALL}/include )
 set( cppkafka_LIB_DIR ${cppkafka_INSTALL}/lib )
 message(${cppkafka_INSTALL})
 
-
+include_directories(src include)
 
 include(ExternalProject)
 #boost
@@ -135,12 +135,12 @@ message(${RDKAFKA_LIBRARY})
 message(${CPPKAFKA_LIBRARY})
 message(${TINS_LIBRARY})
 
-set(SOURCE_FILES main.cpp TrafficeVolumeReduction.cpp TrafficeVolumeReduction.h config.h PeriodicListPrunning.cpp PeriodicListPrunning.h KafkaConnector.cpp KafkaConnector.h)
+set(SOURCE_FILES src/main.cpp src/TrafficeVolumeReduction.cpp include/TrafficeVolumeReduction.h include/config.h src/PeriodicListPrunning.cpp include/PeriodicListPrunning.h src/KafkaConnector.cpp include/KafkaConnector.h)
 add_executable(passivedns ${SOURCE_FILES})
 
 add_dependencies(passivedns boost librdkafka json libtins cppkafka)
 
-target_include_directories(passivedns PUBLIC ${boost_INCLUDE_DIR} ${librdkafka_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR} ${cppkafka_INCLUDE_DIR})
+target_include_directories(passivedns PUBLIC ${boost_INCLUDE_DIR} ${librdkafka_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR} ${cppkafka_INCLUDE_DIR} include)
 target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}" ${OPTIONS_LIBRARY})
 
 install(TARGETS passivedns CONFIGURATIONS Debug RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)

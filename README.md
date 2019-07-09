@@ -4,6 +4,7 @@
 ## Requirements
 1. C++11 and higher
 1. Make
+1. pcap `sudo apt-get install libpcap-dev`
 1. G++
 1. Python headers `python-dev`
 1. ZLIB

@@ -31,7 +31,11 @@ set( cppkafka_INSTALL ${PROJECT_SOURCE_DIR}/lib/cppkafka )
 set( cppkafka_INCLUDE_DIR ${cppkafka_INSTALL}/include )
 set( cppkafka_LIB_DIR ${cppkafka_INSTALL}/lib )
 
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+
 include_directories(src include)
+add_subdirectory(lib/nlohmann_json)
+
 #
 #include(ExternalProject)
 ##boost
@@ -136,7 +140,7 @@ add_executable(passivedns ${SOURCE_FILES})
 #add_dependencies(passivedns boost librdkafka json libtins cppkafka)
 
 target_include_directories(passivedns PRIVATE ${boost_INCLUDE_DIR} ${librdkafka_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR} ${cppkafka_INCLUDE_DIR})
-target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}" ${OPTIONS_LIBRARY})
+target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}" ${OPTIONS_LIBRARY} nlohmann_json::nlohmann_json)
 
 install(TARGETS passivedns CONFIGURATIONS Debug RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)
 install(FILES passivedns.conf PERMISSIONS WORLD_EXECUTE TYPE SYSCONF)

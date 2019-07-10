@@ -32,7 +32,10 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 include_directories(src include)
 add_subdirectory(lib/nlohmann_json)
-
+file(COPY lib/librdkafka DESTINATION ${CMAKE_BINARY_DIR}/lib)
+file(COPY lib/libtins DESTINATION ${CMAKE_BINARY_DIR}/lib)
+file(COPY lib/cppkafka DESTINATION ${CMAKE_BINARY_DIR}/lib)
+file(COPY lib/boost DESTINATION ${CMAKE_BINARY_DIR}/lib)
 #include(ExternalProject)
 ##boost
 #externalproject_add(boost
@@ -140,3 +143,12 @@ target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKA
 
 install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS OWNER_EXECUTE)
 install(FILES passivedns.conf PERMISSIONS OWNER_WRITE TYPE SYSCONF)
+install(DIRECTORY lib/librdkafka/lib/ DESTINATION lib)
+install(DIRECTORY lib/librdkafka/include/ DESTINATION include)
+install(DIRECTORY lib/libtins/lib/ DESTINATION lib)
+install(DIRECTORY lib/libtins/include/ DESTINATION include)
+install(DIRECTORY lib/cppkafka/lib/ DESTINATION lib)
+install(DIRECTORY lib/cppkafka/include/ DESTINATION include)
+install(FILES lib/boost/lib/libboost_program_options.a lib/boost/lib/libboost_program_options.so lib/boost/lib/libboost_program_options.so.1 lib/boost/lib/libboost_program_options.so.1.70.0 lib/boost/lib/libboost_program_options.so.1.70 DESTINATION lib)
+install(DIRECTORY lib/boost/include/boost/program_options DESTINATION include/boost)
+

@@ -20,3 +20,4 @@
 1. `cmake ..`
 1. `make`
 1. `make install`
+1. `ldconfig`

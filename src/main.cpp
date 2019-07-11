@@ -159,7 +159,6 @@ bool callback(const PDU& pdu)
 {
     DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
     Packet packet = (Packet)pdu;
-    std::set<std::string> ips;
     DomainInfo _dns;
     _dns.t = packet.timestamp().seconds();
 

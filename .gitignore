@@ -3,15 +3,8 @@ cmake-build-debug
 cmake_install.cmake
 *.bak
 Makefile
-config.h
 passivedns
 CMakeFiles
 CMakeCache.txt
-boost
 build
-cppkafka
-json
-librdkafka
-libtins
-src
 

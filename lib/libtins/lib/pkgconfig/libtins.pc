@@ -1,0 +1,10 @@
+prefix=/home/user/CLionProjects/pdns/lib/libtins
+exec_prefix=/home/user/CLionProjects/pdns/lib/libtins
+libdir=/home/user/CLionProjects/pdns/lib/libtins/lib
+includedir=${prefix}/include
+
+Name: libtins
+Description: C++ packet crafting, sniffing and interpretation library.
+Version: 4.3
+Libs: -L${libdir} -ltins
+Cflags: -I${includedir}/tins

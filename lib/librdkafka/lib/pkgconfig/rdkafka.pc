@@ -1,0 +1,10 @@
+prefix=/home/user/CLionProjects/pdns/lib/librdkafka
+libdir=/home/user/CLionProjects/pdns/lib/librdkafka/lib
+includedir=/home/user/CLionProjects/pdns/lib/librdkafka/include
+
+Name: librdkafka
+Description: The Apache Kafka C/C++ library
+Version: 1.1.0
+Cflags: -I${includedir}
+Libs: -L${libdir} -lrdkafka
+Libs.private: -lm -Wl,-Bstatic -lssl -Wl,-Bdynamic -Wl,-Bstatic -lcrypto -Wl,-Bdynamic -Wl,-Bstatic -lz -Wl,-Bdynamic -ldl -lpthread -lrt

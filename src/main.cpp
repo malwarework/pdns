@@ -194,9 +194,8 @@ bool callback(const PDU& pdu)
     }
     if(tvr.F1(_dns))
     {
-        PeriodicListPrunning f2;
         L_mutex.lock();
-        f2.push(L, _dns);
+        PeriodicListPrunning::push(L, _dns);
         L_mutex.unlock();
     }
     return true;

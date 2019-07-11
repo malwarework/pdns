@@ -27,7 +27,7 @@ struct Candidate{
 class PeriodicListPrunning {
 public:
     static void push(std::vector<Candidate>&, DomainInfo);
-    void F2(std::vector<Candidate>&, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5);
+//    void F2(std::vector<Candidate>&, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5);
 
 };
 

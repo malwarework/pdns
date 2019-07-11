@@ -50,21 +50,21 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
     }
 };
 
-void F2(std::vector<Candidate>& L, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5)
-{
-    for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
-        std::set<IP_TYPE> networks;
-        for (auto ip : value->r){
-            std::vector<std::string> results;
-            boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
-            results[2] = results[3] = '0';
-            networks.insert(boost::algorithm::join(results, "."));
-        }
-        if ((value->q > q) && (value->g.size() < len_g) && ((value->r.size() <= len_rj) || ((float)(networks.size() / value->r.size()) <= p))){
-            ++value;
-        }
-        else{
-            value = L.erase(value);
-        }
-    }
-}
+//void F2(std::vector<Candidate>& L, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5)
+//{
+//    for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
+//        std::set<IP_TYPE> networks;
+//        for (auto ip : value->r){
+//            std::vector<std::string> results;
+//            boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
+//            results[2] = results[3] = '0';
+//            networks.insert(boost::algorithm::join(results, "."));
+//        }
+//        if ((value->q > q) && (value->g.size() < len_g) && ((value->r.size() <= len_rj) || ((float)(networks.size() / value->r.size()) <= p))){
+//            ++value;
+//        }
+//        else{
+//            value = L.erase(value);
+//        }
+//    }
+//}

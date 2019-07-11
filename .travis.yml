@@ -22,11 +22,9 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
 
 before_script:
-  # run cmake; here we assume that the project's
-  # top-level CMakeLists.txt is located at '..'
-  - mkdir build
-  - cd build
-  - cmake ..
+#  - mkdir build
+#  - cd build
+#  - cmake ..
 
 script:
   - cppcheck src/*.cpp --verbose --enable=all --inconclusive

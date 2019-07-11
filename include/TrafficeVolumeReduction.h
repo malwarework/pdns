@@ -29,9 +29,9 @@ struct DomainInfo {
 
 class TrafficeVolumeReduction {
 private:
-    bool F1a(const DomainInfo&, unsigned short int);
-    bool F1b(const DomainInfo&, unsigned int, unsigned short int);
-    bool F1c(const DomainInfo&);
+    static bool F1a(const DomainInfo&, unsigned short int);
+    static bool F1b(const DomainInfo&, unsigned int, unsigned short int);
+    static bool F1c(const DomainInfo&);
 public:
     bool F1(const DomainInfo&);
 };

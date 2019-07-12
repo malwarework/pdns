@@ -7,7 +7,7 @@ CPPCHECK:
     image: ubuntu:bionic
     before_script:
         - apt update
-        - apt install -y --no-install-recommends cppcheck=1.82-1
+        - apt install -y --no-install-recommends cppcheck
         - cppcheck --version
     script:
         - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
@@ -19,7 +19,7 @@ CLANG:
         CC: clang
         CXX: clang++
     before_script:
-        - pacman -Syu --needed --noconfirm clang-tools-extra=6.0.1-2
+        - pacman -Syu --needed --noconfirm clang-tools-extra
         - clang-tidy --version
     script:
         - clang-tidy -warnings-as-errors="*" -checks="-",clang-analyzer-*

@@ -29,10 +29,10 @@ CPPCHECK:
         
 BUILD_GCC:
     stage: building
-    image: ubuntu:bionic
+    image: lasote/conangcc7
     before_script:
-        - apt update
-        - apt install -y gcovr
+        - sudo apt update
+        - sudo apt install -y gcovr
     script:
         - mkdir -p build && cd build
         - conan install ..

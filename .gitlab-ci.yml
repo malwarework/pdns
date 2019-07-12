@@ -1,0 +1,12 @@
+stages:
+    - cppcheck
+    
+CPPCHECK:
+    stage: cppcheck
+    image: ubuntu:bionic
+    before_script:
+        - apt update
+        - apt install -y --no-install-recommends cppcheck=1.82.1
+        - cppcheck version
+    script:
+        - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config

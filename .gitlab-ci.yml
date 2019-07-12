@@ -1,5 +1,6 @@
 stages:
     - cppcheck
+    - clang
     
 CPPCHECK:
     stage: cppcheck
@@ -10,3 +11,15 @@ CPPCHECK:
         - cppcheck --version
     script:
         - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
+        
+CLANG:
+    stage: clang
+    image: base/archlinux:2018.09.81
+    variables:
+        CC: clang
+        CXX: clang++
+    before_script:
+        - pacman -Syu --needed --noconfirm clang-tools-extra=6.0.1-2
+        - clang-tidy --version
+    script:
+        - clang-tidy -warnings-as-errors="*" -checks="-",clang-analyzer-*

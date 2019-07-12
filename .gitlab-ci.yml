@@ -13,7 +13,7 @@ CPPCHECK:
         - apt install -y --no-install-recommends cppcheck
         - cppcheck --version
     script:
-        - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
+        - cppcheck src/*.cpp include/*.h --verbose --enable=all --inconclusive --check-config
         
 # CLANG:
 #     stage: code-analyze

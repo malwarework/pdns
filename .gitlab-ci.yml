@@ -1,11 +1,12 @@
 stages:
+    - code-analyze
     - cppcheck
     - clang
     - doxygen
     - building
     
 CPPCHECK:
-    stage: cppcheck
+    stage: code-analyze
     image: ubuntu:bionic
     before_script:
         - apt update
@@ -15,7 +16,7 @@ CPPCHECK:
         - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
         
 # CLANG:
-#     stage: clang
+#     stage: code-analyze
 #     image: archlinux/base
 #     variables:
 #         CC: clang

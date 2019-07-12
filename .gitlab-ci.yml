@@ -14,7 +14,7 @@ CPPCHECK:
         
 CLANG:
     stage: clang
-    image: base/archlinux:2018.09.01
+    image: archlinux/base
     variables:
         CC: clang
         CXX: clang++

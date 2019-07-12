@@ -2,6 +2,7 @@ stages:
     - cppcheck
     - clang
     - doxygen
+    - building
     
 CPPCHECK:
     stage: cppcheck
@@ -24,3 +25,15 @@ CLANG:
         - clang-tidy --version
     script:
         - clang-tidy src/*.cpp -warnings-as-errors="*" -checks="-",clang-analyzer-*
+        
+BUILD_GCC:
+    stage: building
+    image: lasote/conangcc7
+    before_script:
+        - sudo apt update
+        - sudo apt install gcovr
+    script:
+        - mkdir -p build && cd build
+        - conan install ..
+        - cmake ..
+        - cmake --build .

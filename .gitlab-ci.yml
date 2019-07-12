@@ -14,17 +14,17 @@ CPPCHECK:
     script:
         - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
         
-CLANG:
-    stage: clang
-    image: archlinux/base
-    variables:
-        CC: clang
-        CXX: clang++
-    before_script:
-        - pacman -Syu --needed --noconfirm clang-tools-extra
-        - clang-tidy --version
-    script:
-        - clang-tidy src/*.cpp -warnings-as-errors="*" -checks="-",clang-analyzer-*
+# CLANG:
+#     stage: clang
+#     image: archlinux/base
+#     variables:
+#         CC: clang
+#         CXX: clang++
+#     before_script:
+#         - pacman -Syu --needed --noconfirm clang-tools-extra
+#         - clang-tidy --version
+#     script:
+#         - clang-tidy src/*.cpp -warnings-as-errors="*" -checks="-",clang-analyzer-*
         
 BUILD_GCC:
     stage: building

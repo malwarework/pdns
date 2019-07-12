@@ -43,6 +43,7 @@ BUILD_DEB:
     stage: building
     image: rikorose/gcc-cmake
     script:
+        - apt install libpcap-dev
         - git submodule init
         - git submodule update
         - mkdir -p build && cd build

@@ -31,7 +31,7 @@ BUILD_GCC:
     stage: building
     image: lasote/conangcc7
     before_script:
-        - sudo apt update
+        # - sudo apt update
         - sudo apt install -y gcovr
     script:
         - mkdir -p build && cd build

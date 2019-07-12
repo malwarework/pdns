@@ -30,9 +30,9 @@ CPPCHECK:
 BUILD_GCC:
     stage: building
     image: lasote/conangcc7
-    before_script:
-        - sudo apt-get update
-        - sudo apt-get install -y gcovr
+    # before_script:
+    #     - sudo apt-get update
+    #     - sudo apt-get install -y gcovr
     script:
         - mkdir -p build && cd build
         - conan install ..

@@ -32,7 +32,7 @@ BUILD_GCC:
     image: ubuntu:bionic
     before_script:
         - apt update
-        - apt install gcovr
+        - apt install -y gcovr
     script:
         - mkdir -p build && cd build
         - conan install ..

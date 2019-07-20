@@ -27,4 +27,3 @@ script:
   - sudo dpkg -i passivedns-1.0.deb
   - whereis passivedns
   - ls -la /etc/passivedns/passivedns.conf
-  - sudo passivedns -h

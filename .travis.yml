@@ -20,14 +20,11 @@ install:
   - mv cmake-3.14.5 cmake-install
   - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   - cd ${TRAVIS_BUILD_DIR}
-
-before_script:
-  - cd build
+#
+#before_script:
+#  - cd build
 
 script:
   - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
+  - cd build
   - sudo dpkg -i passivedns-1.0.deb
-  # once CMake has done its job we just build using make as usual
-  #- make
-  # if the project uses ctest we can run the tests like this
-  #- make test

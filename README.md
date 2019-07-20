@@ -9,7 +9,7 @@
 1. Python headers `python-dev`
 1. ZLIB`zlib1g-dev`
 1. [CMake](https://cmake.org/download/ )*(greater or equal 3.14)*
-1. openssl `openssl-dev`
+1. openssl `libssl-dev`
 
 ## Run
 `./passivedns -i [eth0]`

@@ -9,4 +9,3 @@ CMakeCache.txt
 build/*
 !build/*.deb
 !build/*.rpm
-

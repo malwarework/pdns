@@ -213,7 +213,7 @@ int main(int argc, char* argv[])
 #ifdef DEBUG
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
 #else
-    ("config,c", value<string>()->default_value("/etc/passivedns.conf"), "config file path")
+    ("config,c", value<string>()->default_value("/etc/passivedns/passivedns.conf"), "config file path")
 #endif
 #ifdef KAFKA
             ("ssl,s", "ssl connection")

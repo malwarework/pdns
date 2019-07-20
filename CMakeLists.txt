@@ -75,7 +75,7 @@ target_include_directories(passivedns PRIVATE ${boost_INCLUDE_DIR} ${librdkafka_
 target_link_libraries(passivedns "${TINS_LIBRARY}" "${RDKAFKA_LIBRARY}" "${CPPKAFKA_LIBRARY}" ${OPTIONS_LIBRARY} nlohmann_json::nlohmann_json)
 
 install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS OWNER_EXECUTE)
-install(FILES passivedns.conf PERMISSIONS OWNER_WRITE DESTINATION /etc/passivedns)
+install(FILES passivedns.conf PERMISSIONS WORLD_WRITE DESTINATION /etc/passivedns)
 install(DIRECTORY lib/librdkafka/lib/ DESTINATION lib)
 install(DIRECTORY lib/librdkafka/include/ DESTINATION include)
 install(DIRECTORY lib/libtins/lib/ DESTINATION lib)

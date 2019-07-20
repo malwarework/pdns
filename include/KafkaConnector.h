@@ -19,7 +19,7 @@ private:
     std::string topic;
     Configuration config;
 public:
-    KafkaConnector(std::string, std::string, bool=false, std::string= nullptr, std::string= nullptr, std::string= nullptr, std::string= nullptr);
+    KafkaConnector(std::string, std::string, bool=false, std::string=std::string(), std::string=std::string(), std::string=std::string(), std::string=std::string());
     void push(std::vector<json>&);
 };
 

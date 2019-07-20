@@ -6,5 +6,7 @@ Makefile
 passivedns
 CMakeFiles
 CMakeCache.txt
-build
+build/*
+!build/*.deb
+!build/*.rpm
 

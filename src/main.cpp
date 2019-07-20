@@ -210,7 +210,11 @@ int main(int argc, char* argv[])
     options_description desc("Allowed options");
     desc.add_options()
             ("help,h", "produce help message")
-            ("config,c", value<string>()->default_value("/usr/local/etc/passivedns.conf"), "config file path")
+#ifdef DEBUG
+            ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
+#else
+    ("config,c", value<string>()->default_value("/etc/passivedns.conf"), "config file path")
+#endif
 #ifdef KAFKA
             ("ssl,s", "ssl connection")
 #endif

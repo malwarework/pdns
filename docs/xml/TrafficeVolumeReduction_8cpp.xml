@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="TrafficeVolumeReduction_8cpp" kind="file" language="C++">
+    <compoundname>TrafficeVolumeReduction.cpp</compoundname>
+    <includes refid="TrafficeVolumeReduction_8h" local="yes">../include/TrafficeVolumeReduction.h</includes>
+    <incdepgraph>
+      <node id="85">
+        <label>/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp</label>
+        <link refid="TrafficeVolumeReduction_8cpp"/>
+        <childnode refid="86" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="87">
+        <label>config.h</label>
+        <link refid="config_8h_source"/>
+      </node>
+      <node id="92">
+        <label>ctime</label>
+      </node>
+      <node id="89">
+        <label>vector</label>
+      </node>
+      <node id="91">
+        <label>tins/tins.h</label>
+      </node>
+      <node id="86">
+        <label>../include/TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h_source"/>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+      </node>
+      <node id="93">
+        <label>iostream</label>
+      </node>
+      <node id="88">
+        <label>nlohmann/json.hpp</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>user<sp/>on<sp/>29.6.19.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../include/TrafficeVolumeReduction.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TrafficeVolumeReduction::F1a(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;<sp/>obj,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ttl=10800){</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>obj.<ref refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kindref="member">ttl</ref><sp/>&lt;=<sp/>ttl;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TrafficeVolumeReduction::F1b(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;<sp/>obj,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lenpd=3,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ttl=30){</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(obj.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.size()<sp/>&gt;=<sp/>lenpd)<sp/>||<sp/>(obj.<ref refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kindref="member">ttl</ref><sp/>&lt;=<sp/>ttl);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TrafficeVolumeReduction::F1c(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;<sp/>obj){</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>std::set&lt;IP_TYPE&gt;<sp/>networks;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(obj.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.size()<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ip<sp/>:<sp/>obj.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>results;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::algorithm::split(results,<sp/>ip,<sp/>boost::algorithm::is_any_of(</highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[2]<sp/>=<sp/>results[3]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>networks.insert(boost::algorithm::join(results,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)(networks.size()<sp/>/<sp/>obj.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.size())<sp/>&gt;=<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)(1/3));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(exception){</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TrafficeVolumeReduction::F1(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;<sp/>obj)<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/>F1a(obj)<sp/>&amp;&amp;<sp/>F1b(obj)<sp/>&amp;&amp;<sp/>F1c(obj);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp"/>
+  </compounddef>
+</doxygen>

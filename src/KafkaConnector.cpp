@@ -1,7 +1,3 @@
-//
-// Created by suv on 01.07.2019.
-//
-
 #include "../include/KafkaConnector.h"
 
 KafkaConnector::KafkaConnector(std::string broker_list, std::string topic, bool ssl, std::string ca, std::string certificate, std::string key, std::string password) {

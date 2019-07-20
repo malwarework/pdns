@@ -225,7 +225,7 @@ int main(int argc, char* argv[])
     store(parsed, vm);
     notify(vm);
 
-    /*In case if help*/
+    /// Help message
     if(vm.count("help"))
     {
         cout << desc << endl;
@@ -237,7 +237,7 @@ int main(int argc, char* argv[])
         ssl = true;
     }
 
-    /*config file path*/
+    /// Config file path
     string configfile;
     if(vm.count("config"))
     {
@@ -268,22 +268,26 @@ int main(int argc, char* argv[])
         if(sid < 0)
         {
 #ifdef SYSLOG
-            // Log failure and exit
+            /// Log failure and exit
             syslog(LOG_ERR, "Could not generate session ID for child process");
 #endif
 
-            // If a new session ID could not be generated, we must terminate the child process
-            // or it will be orphaned
+            /*
+             * If a new session ID could not be generated, we must terminate the child process
+             * or it will be orphaned
+             */
             exit(EXIT_FAILURE);
         }
         if((chdir("/")) < 0)
         {
 #ifdef SYSLOG
-            // Log failure and exit
+            /// Log failure and exit
             syslog(LOG_ERR, "Could not change working directory to /");
 #endif
-            // If our guaranteed directory does not exist, terminate the child process to ensure
-            // the daemon has not been hijacked
+            /*
+             * If our guaranteed directory does not exist, terminate the child process to ensure
+             * the daemon has not been hijacked
+             */
             exit(EXIT_FAILURE);
         }
         close(STDIN_FILENO);
@@ -299,19 +303,19 @@ int main(int argc, char* argv[])
     timer_start(F2a, cron_time);
     timer_start(converttojson, upload_hour, true);
 #endif
-    // Sniff on the provided interface in promiscuos mode
+    /// Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;
     config.set_promisc_mode(true);
-    // Only capture udp packets sent to port 53
+    /// Only capture udp packets sent to port 53
     config.set_filter("udp and src port 53");
     Sniffer sniffer(interface, config);
 
-    // Start the capture
+    /// Start the capture
     sniffer.sniff_loop(callback);
 #ifdef SYSLOG
     syslog(LOG_NOTICE, "Stopping daemon-name");
     closelog();
 #endif
-    // Terminate the child process when the daemon completes
+    /// Terminate the child process when the daemon completes
     exit(EXIT_SUCCESS);
 }

@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="PeriodicListPrunning_8h" kind="file" language="C++">
+    <compoundname>PeriodicListPrunning.h</compoundname>
+    <includes refid="config_8h" local="yes">config.h</includes>
+    <includes refid="TrafficeVolumeReduction_8h" local="yes">TrafficeVolumeReduction.h</includes>
+    <includes local="no">ctime</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">tins/tins.h</includes>
+    <includedby refid="KafkaConnector_8h" local="yes">/home/user/CLionProjects/pdns/include/KafkaConnector.h</includedby>
+    <includedby refid="main_8cpp" local="yes">/home/user/CLionProjects/pdns/src/main.cpp</includedby>
+    <includedby refid="PeriodicListPrunning_8cpp" local="yes">/home/user/CLionProjects/pdns/src/PeriodicListPrunning.cpp</includedby>
+    <incdepgraph>
+      <node id="22">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="17">
+        <label>/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h</label>
+        <link refid="PeriodicListPrunning_8h"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>config.h</label>
+        <link refid="config_8h_source"/>
+      </node>
+      <node id="24">
+        <label>ctime</label>
+      </node>
+      <node id="21">
+        <label>vector</label>
+      </node>
+      <node id="23">
+        <label>tins/tins.h</label>
+      </node>
+      <node id="19">
+        <label>TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>iostream</label>
+      </node>
+      <node id="20">
+        <label>nlohmann/json.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="26">
+        <label>/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h</label>
+        <link refid="PeriodicListPrunning_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>/home/user/CLionProjects/pdns/include/KafkaConnector.h</label>
+        <link refid="KafkaConnector_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structCandidate" prot="public">Candidate</innerclass>
+    <innerclass refid="classPeriodicListPrunning" prot="public">PeriodicListPrunning</innerclass>
+    <innernamespace refid="namespacestd">std</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>user<sp/>on<sp/>30.6.19.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PASSIVEDNS_PERIODICLISTPRUNNING_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PASSIVEDNS_PERIODICLISTPRUNNING_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;config.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;TrafficeVolumeReduction.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctime&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tins/tins.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="structCandidate" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCandidate" kindref="compound">Candidate</ref>{</highlight></codeline>
+<codeline lineno="20" refid="structCandidate_1a3c0030ea11a52038701c2ca76705941a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structCandidate_1a3c0030ea11a52038701c2ca76705941a" kindref="member">domain</ref>;<sp/></highlight></codeline>
+<codeline lineno="21" refid="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" kindref="member">t</ref>;<sp/></highlight></codeline>
+<codeline lineno="22" refid="structCandidate_1a79a1c268d8000a91b0c0e5108d3bbddc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>q=0;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23" refid="structCandidate_1a31bee50333f716d41d0d2b456d1a9cbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCandidate_1a31bee50333f716d41d0d2b456d1a9cbc" kindref="member">ttl</ref>;<sp/></highlight></codeline>
+<codeline lineno="24" refid="structCandidate_1a5e00fbe86010ba565a3a74cdac745cf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::set&lt;IP_TYPE&gt;<sp/><ref refid="structCandidate_1a5e00fbe86010ba565a3a74cdac745cf7" kindref="member">r</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25" refid="structCandidate_1a99cbcb4edb040eb425025f1a3692ee13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;uint64_t,<sp/>unsigned<sp/>int&gt;<sp/><ref refid="structCandidate_1a99cbcb4edb040eb425025f1a3692ee13" kindref="member">g</ref>;<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classPeriodicListPrunning" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classPeriodicListPrunning" kindref="compound">PeriodicListPrunning</ref><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>push(std::vector&lt;Candidate&gt;&amp;,<sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>void<sp/>F2(std::vector&lt;Candidate&gt;&amp;,<sp/>unsigned<sp/>short<sp/>int<sp/>q=100,<sp/>unsigned<sp/>short<sp/>int<sp/>len_g=3,<sp/>unsigned<sp/>short<sp/>int<sp/>len_rj=5,<sp/>float<sp/>p=0.5);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//PASSIVEDNS_PERIODICLISTPRUNNING_H</highlight></codeline>
+    </programlisting>
+    <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h"/>
+  </compounddef>
+</doxygen>

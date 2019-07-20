@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structDomainInfo" kind="struct" language="C++" prot="public">
+    <compoundname>DomainInfo</compoundname>
+    <includes refid="TrafficeVolumeReduction_8h" local="no">TrafficeVolumeReduction.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string DomainInfo::domain</definition>
+        <argsstring></argsstring>
+        <name>domain</name>
+        <briefdescription>
+<para>Domain Name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="23" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int DomainInfo::ttl</definition>
+        <argsstring></argsstring>
+        <name>ttl</name>
+        <briefdescription>
+<para>TTL. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="24" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" prot="public" static="no" mutable="no">
+        <type>std::set&lt; IP_TYPE &gt;</type>
+        <definition>std::set&lt;IP_TYPE&gt; DomainInfo::ips</definition>
+        <argsstring></argsstring>
+        <name>ips</name>
+        <briefdescription>
+<para>List of IPs. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="25" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t DomainInfo::t</definition>
+        <argsstring></argsstring>
+        <name>t</name>
+        <briefdescription>
+<para>Value of time. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="26" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Structure for data domains. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="22" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="22" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" prot="public" virt="non-virtual"><scope>DomainInfo</scope><name>domain</name></member>
+      <member refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" prot="public" virt="non-virtual"><scope>DomainInfo</scope><name>ips</name></member>
+      <member refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" prot="public" virt="non-virtual"><scope>DomainInfo</scope><name>t</name></member>
+      <member refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" prot="public" virt="non-virtual"><scope>DomainInfo</scope><name>ttl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

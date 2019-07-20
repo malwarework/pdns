@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classPeriodicListPrunning" kind="class" language="C++" prot="public">
+    <compoundname>PeriodicListPrunning</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classPeriodicListPrunning_1a185475fec9a559740d30ae9129fe04f5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PeriodicListPrunning::push</definition>
+        <argsstring>(std::vector&lt; Candidate &gt; &amp;, DomainInfo)</argsstring>
+        <name>push</name>
+        <param>
+          <type>std::vector&lt; <ref refid="structCandidate" kindref="compound">Candidate</ref> &gt; &amp;</type>
+          <defname>L</defname>
+        </param>
+        <param>
+          <type><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref></type>
+          <defname>domain</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="30" column="1" bodyfile="/home/user/CLionProjects/pdns/src/PeriodicListPrunning.cpp" bodystart="7" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="28" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="28" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classPeriodicListPrunning_1a185475fec9a559740d30ae9129fe04f5" prot="public" virt="non-virtual"><scope>PeriodicListPrunning</scope><name>push</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

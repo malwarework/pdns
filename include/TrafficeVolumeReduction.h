@@ -18,12 +18,12 @@ using namespace std;
 using json = nlohmann::json;
 
 
-
+/// Structure for data domains
 struct DomainInfo {
-    std::string domain;
-    unsigned short int ttl;
-    std::set<IP_TYPE> ips;
-    uint64_t t;
+    std::string domain; ///< Domain Name
+    unsigned short int ttl; ///< TTL
+    std::set<IP_TYPE> ips;  ///< List of IPs
+    uint64_t t; ///< Value of time
 };
 
 

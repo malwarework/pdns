@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="PeriodicListPrunning_8cpp" kind="file" language="C++">
+    <compoundname>PeriodicListPrunning.cpp</compoundname>
+    <includes refid="PeriodicListPrunning_8h" local="yes">../include/PeriodicListPrunning.h</includes>
+    <incdepgraph>
+      <node id="80">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="75">
+        <label>../include/PeriodicListPrunning.h</label>
+        <link refid="PeriodicListPrunning_8h_source"/>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>config.h</label>
+        <link refid="config_8h_source"/>
+      </node>
+      <node id="82">
+        <label>ctime</label>
+      </node>
+      <node id="79">
+        <label>vector</label>
+      </node>
+      <node id="81">
+        <label>tins/tins.h</label>
+      </node>
+      <node id="77">
+        <label>TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h_source"/>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>iostream</label>
+      </node>
+      <node id="78">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="74">
+        <label>/home/user/CLionProjects/pdns/src/PeriodicListPrunning.cpp</label>
+        <link refid="PeriodicListPrunning_8cpp"/>
+        <childnode refid="75" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>user<sp/>on<sp/>30.6.19.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../include/PeriodicListPrunning.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PeriodicListPrunning::push(std::vector&lt;Candidate&gt;<sp/>&amp;L,<sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref><sp/>domain){</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCandidate" kindref="compound">Candidate</ref><sp/>candidate;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>inArray<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>:TODO<sp/>There<sp/>фку<sp/>problems<sp/>with<sp/>calculating<sp/>Gi<sp/>and<sp/>Ri</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="structCandidate" kindref="compound">Candidate</ref>&amp;<sp/>elem<sp/>:<sp/>L){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(elem.domain<sp/>==<sp/>domain.<ref refid="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" kindref="member">domain</ref>){</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>ti</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem.<ref refid="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" kindref="member">t</ref><sp/>=<sp/>domain.<ref refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>Qd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem.q++;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>max<sp/>TTL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem.ttl<sp/>=<sp/>(elem.ttl<sp/>&gt;=<sp/>domain.<ref refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kindref="member">ttl</ref><sp/>?<sp/>elem.ttl<sp/>:<sp/>domain.<ref refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kindref="member">ttl</ref>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>Gd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Get<sp/>IPs<sp/>till<sp/>this<sp/>moment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::set&lt;IP_TYPE&gt;<sp/>diff;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::set_difference(domain.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.begin(),<sp/>domain.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.end(),<sp/>elem.r.begin(),<sp/>elem.r.end(),<sp/>std::inserter(diff,<sp/>diff.begin()));</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diff.size()<sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem.g.insert(std::make_pair(domain.<ref refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" kindref="member">t</ref>,<sp/>diff.size()));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>Rd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elem.r.insert(domain.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.begin(),<sp/>domain.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.end());</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inArray<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!inArray){</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>domain</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>candidate.<ref refid="structCandidate_1a3c0030ea11a52038701c2ca76705941a" kindref="member">domain</ref><sp/>=<sp/>domain.<ref refid="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" kindref="member">domain</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>ti</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>candidate.<ref refid="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" kindref="member">t</ref><sp/>=<sp/>domain.<ref refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>Qd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>candidate.<ref refid="structCandidate_1a79a1c268d8000a91b0c0e5108d3bbddc" kindref="member">q</ref><sp/>++;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>max<sp/>TTL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>candidate.<ref refid="structCandidate_1a31bee50333f716d41d0d2b456d1a9cbc" kindref="member">ttl</ref><sp/>=<sp/>domain.<ref refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kindref="member">ttl</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>Rd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>candidate.<ref refid="structCandidate_1a5e00fbe86010ba565a3a74cdac745cf7" kindref="member">r</ref><sp/>=<sp/>domain.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>Gd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>domains_size<sp/>=<sp/>domain.<ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>.size();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>candidate.<ref refid="structCandidate_1a99cbcb4edb040eb425025f1a3692ee13" kindref="member">g</ref>.insert(std::make_pair(domain.<ref refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" kindref="member">t</ref>,<sp/>domains_size));</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>L.push_back(candidate);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//void<sp/>F2(std::vector&lt;Candidate&gt;&amp;<sp/>L,<sp/>unsigned<sp/>short<sp/>int<sp/>q=100,<sp/>unsigned<sp/>short<sp/>int<sp/>len_g=3,<sp/>unsigned<sp/>short<sp/>int<sp/>len_rj=5,<sp/>float<sp/>p=0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>for<sp/>(std::vector&lt;Candidate&gt;::iterator<sp/>value=L.begin();value!=L.end();){</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::set&lt;IP_TYPE&gt;<sp/>networks;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(auto<sp/>ip<sp/>:<sp/>value-&gt;r){</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>results;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::algorithm::split(results,<sp/>ip,<sp/>boost::algorithm::is_any_of(&quot;.&quot;));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[2]<sp/>=<sp/>results[3]<sp/>=<sp/>&apos;0&apos;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>networks.insert(boost::algorithm::join(results,<sp/>&quot;.&quot;));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>((value-&gt;q<sp/>&gt;<sp/>q)<sp/>&amp;&amp;<sp/>(value-&gt;g.size()<sp/>&lt;<sp/>len_g)<sp/>&amp;&amp;<sp/>((value-&gt;r.size()<sp/>&lt;=<sp/>len_rj)<sp/>||<sp/>((float)(networks.size()<sp/>/<sp/>value-&gt;r.size())<sp/>&lt;=<sp/>p))){</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++value;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value<sp/>=<sp/>L.erase(value);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//}</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/user/CLionProjects/pdns/src/PeriodicListPrunning.cpp"/>
+  </compounddef>
+</doxygen>

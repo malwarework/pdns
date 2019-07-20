@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="KafkaConnector_8h" kind="file" language="C++">
+    <compoundname>KafkaConnector.h</compoundname>
+    <includes refid="PeriodicListPrunning_8h" local="yes">PeriodicListPrunning.h</includes>
+    <includes refid="config_8h" local="yes">config.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">nlohmann/json.hpp</includes>
+    <includes local="no">cppkafka/cppkafka.h</includes>
+    <includedby refid="KafkaConnector_8cpp" local="yes">/home/user/CLionProjects/pdns/src/KafkaConnector.cpp</includedby>
+    <includedby refid="main_8cpp" local="yes">/home/user/CLionProjects/pdns/src/main.cpp</includedby>
+    <incdepgraph>
+      <node id="11">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="15">
+        <label>cppkafka/cppkafka.h</label>
+      </node>
+      <node id="6">
+        <label>PeriodicListPrunning.h</label>
+        <link refid="PeriodicListPrunning_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>config.h</label>
+        <link refid="config_8h_source"/>
+      </node>
+      <node id="13">
+        <label>ctime</label>
+      </node>
+      <node id="10">
+        <label>vector</label>
+      </node>
+      <node id="5">
+        <label>/home/user/CLionProjects/pdns/include/KafkaConnector.h</label>
+        <link refid="KafkaConnector_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>tins/tins.h</label>
+      </node>
+      <node id="8">
+        <label>TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+      <node id="9">
+        <label>nlohmann/json.hpp</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classKafkaConnector" prot="public">KafkaConnector</innerclass>
+    <innernamespace refid="namespacecppkafka">cppkafka</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="KafkaConnector_8h_1ab701e3ac61a85b337ec5c1abaad6742d" prot="public" static="no">
+        <type>nlohmann::json</type>
+        <definition>using json =  nlohmann::json</definition>
+        <argsstring></argsstring>
+        <name>json</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h" line="10" column="1" bodyfile="/home/user/CLionProjects/pdns/include/KafkaConnector.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PASSIVEDNS_KAFKACONNECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PASSIVEDNS_KAFKACONNECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;PeriodicListPrunning.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;config.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cppkafka/cppkafka.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>json<sp/>=<sp/>nlohmann::json;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacecppkafka" kindref="compound">cppkafka</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>Class<sp/>for<sp/>connecting<sp/>to<sp/>kafka</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="classKafkaConnector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classKafkaConnector" kindref="compound">KafkaConnector</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>topic;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Configuration<sp/>config;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classKafkaConnector" kindref="compound">KafkaConnector</ref>(std::string,<sp/>std::string,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>std::string=std::string(),<sp/>std::string=std::string(),<sp/>std::string=std::string(),<sp/>std::string=std::string());</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>push(std::vector&lt;json&gt;&amp;);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//PASSIVEDNS_KAFKACONNECTOR_H</highlight></codeline>
+    </programlisting>
+    <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h"/>
+  </compounddef>
+</doxygen>

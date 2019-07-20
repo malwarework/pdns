@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="config_8h" kind="file" language="C++">
+    <compoundname>config.h</compoundname>
+    <includedby refid="PeriodicListPrunning_8h" local="yes">/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h</includedby>
+    <includedby refid="TrafficeVolumeReduction_8h" local="yes">/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h</includedby>
+    <includedby refid="KafkaConnector_8h" local="yes">/home/user/CLionProjects/pdns/include/KafkaConnector.h</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h</label>
+        <link refid="PeriodicListPrunning_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/home/user/CLionProjects/pdns/include/config.h</label>
+        <link refid="config_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/home/user/CLionProjects/pdns/include/KafkaConnector.h</label>
+        <link refid="KafkaConnector_8h_source"/>
+      </node>
+      <node id="4">
+        <label>/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="config_8h_1accc051a817df8351e00b1d1af7bf2426" prot="public" static="no">
+        <name>IP_TYPE</name>
+        <initializer>std::string</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/config.h" line="12" column="9" bodyfile="/home/user/CLionProjects/pdns/include/config.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="config_8h_1a64d179d31ee498f4295cde488d5e18ec" prot="public" static="no">
+        <name>KAFKA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/config.h" line="15" column="9" bodyfile="/home/user/CLionProjects/pdns/include/config.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>\file</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>\brief<sp/>Configuration<sp/>file</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Comment<sp/>not<sp/>using<sp/>params:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>DEBUG<sp/>-<sp/>for<sp/>debug</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>ERROR<sp/>-<sp/>enable<sp/>output<sp/>errors<sp/>to<sp/>terminal</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>KAFKA<sp/>-<sp/>enable<sp/>suuport<sp/>of<sp/>kafka</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>SYSLOG<sp/>-<sp/>output<sp/>to<sp/>syslog</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>IP_TYPE<sp/>IPv4Address</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IP_TYPE<sp/>std::string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>ERROR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KAFKA</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor">#define<sp/>SYSLOG</highlight></codeline>
+    </programlisting>
+    <location file="/home/user/CLionProjects/pdns/include/config.h"/>
+  </compounddef>
+</doxygen>

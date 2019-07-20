@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="TrafficeVolumeReduction_8h" kind="file" language="C++">
+    <compoundname>TrafficeVolumeReduction.h</compoundname>
+    <includes refid="config_8h" local="yes">config.h</includes>
+    <includes local="no">nlohmann/json.hpp</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">boost/algorithm/string.hpp</includes>
+    <includes local="no">tins/tins.h</includes>
+    <includes local="no">ctime</includes>
+    <includes local="no">iostream</includes>
+    <includedby refid="PeriodicListPrunning_8h" local="yes">/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h</includedby>
+    <includedby refid="main_8cpp" local="yes">/home/user/CLionProjects/pdns/src/main.cpp</includedby>
+    <includedby refid="TrafficeVolumeReduction_8cpp" local="yes">/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp</includedby>
+    <incdepgraph>
+      <node id="32">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="29">
+        <label>config.h</label>
+        <link refid="config_8h_source"/>
+      </node>
+      <node id="34">
+        <label>ctime</label>
+      </node>
+      <node id="31">
+        <label>vector</label>
+      </node>
+      <node id="33">
+        <label>tins/tins.h</label>
+      </node>
+      <node id="28">
+        <label>/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>iostream</label>
+      </node>
+      <node id="30">
+        <label>nlohmann/json.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="37">
+        <label>/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h</label>
+        <link refid="PeriodicListPrunning_8h_source"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>/home/user/CLionProjects/pdns/include/KafkaConnector.h</label>
+        <link refid="KafkaConnector_8h_source"/>
+      </node>
+      <node id="36">
+        <label>/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h</label>
+        <link refid="TrafficeVolumeReduction_8h"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structDomainInfo" prot="public">DomainInfo</innerclass>
+    <innerclass refid="classTrafficeVolumeReduction" prot="public">TrafficeVolumeReduction</innerclass>
+    <innernamespace refid="namespaceTins">Tins</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="TrafficeVolumeReduction_8h_1ab701e3ac61a85b337ec5c1abaad6742d" prot="public" static="no">
+        <type>nlohmann::json</type>
+        <definition>using json =  nlohmann::json</definition>
+        <argsstring></argsstring>
+        <name>json</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="18" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>user<sp/>on<sp/>29.6.19.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PASSIVEDNS_TRAFFICEVOLUMEREDUCTION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PASSIVEDNS_TRAFFICEVOLUMEREDUCTION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;config.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/algorithm/string.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tins/tins.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctime&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceTins" kindref="compound">Tins</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>json<sp/>=<sp/>nlohmann::json;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="structDomainInfo" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref><sp/>{</highlight></codeline>
+<codeline lineno="23" refid="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" kindref="member">domain</ref>;<sp/></highlight></codeline>
+<codeline lineno="24" refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kindref="member">ttl</ref>;<sp/></highlight></codeline>
+<codeline lineno="25" refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::set&lt;IP_TYPE&gt;<sp/><ref refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kindref="member">ips</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" kindref="member">t</ref>;<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classTrafficeVolumeReduction" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classTrafficeVolumeReduction" kindref="compound">TrafficeVolumeReduction</ref><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>F1a(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>F1b(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>F1c(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>F1(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDomainInfo" kindref="compound">DomainInfo</ref>&amp;);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//PASSIVEDNS_TRAFFICEVOLUMEREDUCTION_H</highlight></codeline>
+    </programlisting>
+    <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h"/>
+  </compounddef>
+</doxygen>

@@ -15,13 +15,14 @@
 
 using namespace std;
 
+/// Structure of data
 struct Candidate{
-    std::string domain;
-    uint64_t t;
-    unsigned int q=0;
-    unsigned short int ttl;
-    std::set<IP_TYPE> r;
-    std::map<uint64_t, unsigned int> g;
+    std::string domain; ///< Domain name
+    uint64_t t; ///< value of time
+    unsigned int q=0;   ///< Qi
+    unsigned short int ttl; ///< TTL
+    std::set<IP_TYPE> r;    ///< Ri
+    std::map<uint64_t, unsigned int> g; ///< Gi
 };
 
 class PeriodicListPrunning {

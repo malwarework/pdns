@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structCandidate" kind="struct" language="C++" prot="public">
+    <compoundname>Candidate</compoundname>
+    <includes refid="PeriodicListPrunning_8h" local="no">PeriodicListPrunning.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCandidate_1a3c0030ea11a52038701c2ca76705941a" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string Candidate::domain</definition>
+        <argsstring></argsstring>
+        <name>domain</name>
+        <briefdescription>
+<para>Domain name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="20" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t Candidate::t</definition>
+        <argsstring></argsstring>
+        <name>t</name>
+        <briefdescription>
+<para>value of time </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="21" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCandidate_1a79a1c268d8000a91b0c0e5108d3bbddc" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int Candidate::q</definition>
+        <argsstring></argsstring>
+        <name>q</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+<para>Qi. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="22" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCandidate_1a31bee50333f716d41d0d2b456d1a9cbc" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int Candidate::ttl</definition>
+        <argsstring></argsstring>
+        <name>ttl</name>
+        <briefdescription>
+<para>TTL. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="23" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCandidate_1a5e00fbe86010ba565a3a74cdac745cf7" prot="public" static="no" mutable="no">
+        <type>std::set&lt; IP_TYPE &gt;</type>
+        <definition>std::set&lt;IP_TYPE&gt; Candidate::r</definition>
+        <argsstring></argsstring>
+        <name>r</name>
+        <briefdescription>
+<para>Ri. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="24" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCandidate_1a99cbcb4edb040eb425025f1a3692ee13" prot="public" static="no" mutable="no">
+        <type>std::map&lt; uint64_t, unsigned int &gt;</type>
+        <definition>std::map&lt;uint64_t, unsigned int&gt; Candidate::g</definition>
+        <argsstring></argsstring>
+        <name>g</name>
+        <briefdescription>
+<para>Gi. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="25" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Structure of data. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" line="19" column="1" bodyfile="/home/user/CLionProjects/pdns/include/PeriodicListPrunning.h" bodystart="19" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structCandidate_1a3c0030ea11a52038701c2ca76705941a" prot="public" virt="non-virtual"><scope>Candidate</scope><name>domain</name></member>
+      <member refid="structCandidate_1a99cbcb4edb040eb425025f1a3692ee13" prot="public" virt="non-virtual"><scope>Candidate</scope><name>g</name></member>
+      <member refid="structCandidate_1a79a1c268d8000a91b0c0e5108d3bbddc" prot="public" virt="non-virtual"><scope>Candidate</scope><name>q</name></member>
+      <member refid="structCandidate_1a5e00fbe86010ba565a3a74cdac745cf7" prot="public" virt="non-virtual"><scope>Candidate</scope><name>r</name></member>
+      <member refid="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" prot="public" virt="non-virtual"><scope>Candidate</scope><name>t</name></member>
+      <member refid="structCandidate_1a31bee50333f716d41d0d2b456d1a9cbc" prot="public" virt="non-virtual"><scope>Candidate</scope><name>ttl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

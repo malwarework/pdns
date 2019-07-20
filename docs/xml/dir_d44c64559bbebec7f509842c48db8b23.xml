@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_d44c64559bbebec7f509842c48db8b23" kind="dir">
+    <compoundname>/home/user/CLionProjects/pdns/include</compoundname>
+    <innerfile refid="config_8h">config.h</innerfile>
+    <innerfile refid="KafkaConnector_8h">KafkaConnector.h</innerfile>
+    <innerfile refid="PeriodicListPrunning_8h">PeriodicListPrunning.h</innerfile>
+    <innerfile refid="TrafficeVolumeReduction_8h">TrafficeVolumeReduction.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/user/CLionProjects/pdns/include/"/>
+  </compounddef>
+</doxygen>

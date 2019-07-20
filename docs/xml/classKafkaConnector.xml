@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classKafkaConnector" kind="class" language="C++" prot="public">
+    <compoundname>KafkaConnector</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classKafkaConnector_1a968669fdbf545399416aacff34a8f622" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string KafkaConnector::topic</definition>
+        <argsstring></argsstring>
+        <name>topic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h" line="18" column="1" bodyfile="/home/user/CLionProjects/pdns/include/KafkaConnector.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classKafkaConnector_1a52dadc0722de5375ae9257842ce727ba" prot="private" static="no" mutable="no">
+        <type>Configuration</type>
+        <definition>Configuration KafkaConnector::config</definition>
+        <argsstring></argsstring>
+        <name>config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h" line="19" column="1" bodyfile="/home/user/CLionProjects/pdns/include/KafkaConnector.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classKafkaConnector_1aac183438275dc4dcd40f24d6bd3a7f47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>KafkaConnector::KafkaConnector</definition>
+        <argsstring>(std::string, std::string, bool=false, std::string=std::string(), std::string=std::string(), std::string=std::string(), std::string=std::string())</argsstring>
+        <name>KafkaConnector</name>
+        <param>
+          <type>std::string</type>
+          <defname>broker_list</defname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <defname>topic</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <defname>ssl</defname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>std::string</type>
+          <defname>ca</defname>
+          <defval>std::string()</defval>
+        </param>
+        <param>
+          <type>std::string</type>
+          <defname>certificate</defname>
+          <defval>std::string()</defval>
+        </param>
+        <param>
+          <type>std::string</type>
+          <defname>key</defname>
+          <defval>std::string()</defval>
+        </param>
+        <param>
+          <type>std::string</type>
+          <defname>password</defname>
+          <defval>std::string()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h" line="21" column="1" bodyfile="/home/user/CLionProjects/pdns/src/KafkaConnector.cpp" bodystart="3" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classKafkaConnector_1aa3ed5d63f688d31347ed691e86fd40da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void KafkaConnector::push</definition>
+        <argsstring>(std::vector&lt; json &gt; &amp;)</argsstring>
+        <name>push</name>
+        <param>
+          <type>std::vector&lt; json &gt; &amp;</type>
+          <defname>L</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h" line="22" column="1" bodyfile="/home/user/CLionProjects/pdns/src/KafkaConnector.cpp" bodystart="25" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/user/CLionProjects/pdns/include/KafkaConnector.h" line="16" column="1" bodyfile="/home/user/CLionProjects/pdns/include/KafkaConnector.h" bodystart="16" bodyend="23"/>
+    <listofallmembers>
+      <member refid="classKafkaConnector_1a52dadc0722de5375ae9257842ce727ba" prot="private" virt="non-virtual"><scope>KafkaConnector</scope><name>config</name></member>
+      <member refid="classKafkaConnector_1aac183438275dc4dcd40f24d6bd3a7f47" prot="public" virt="non-virtual"><scope>KafkaConnector</scope><name>KafkaConnector</name></member>
+      <member refid="classKafkaConnector_1aa3ed5d63f688d31347ed691e86fd40da" prot="public" virt="non-virtual"><scope>KafkaConnector</scope><name>push</name></member>
+      <member refid="classKafkaConnector_1a968669fdbf545399416aacff34a8f622" prot="private" virt="non-virtual"><scope>KafkaConnector</scope><name>topic</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,7 +1,3 @@
-//
-// Created by suv on 01.07.2019.
-//
-
 #ifndef PASSIVEDNS_KAFKACONNECTOR_H
 #define PASSIVEDNS_KAFKACONNECTOR_H
 
@@ -14,6 +10,9 @@
 using json = nlohmann::json;
 using namespace cppkafka;
 
+/*
+ * Class for connecting to kafka
+ */
 class KafkaConnector {
 private:
     std::string topic;

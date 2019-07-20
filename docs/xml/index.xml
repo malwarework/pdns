@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="structCandidate" kind="struct"><name>Candidate</name>
+    <member refid="structCandidate_1a3c0030ea11a52038701c2ca76705941a" kind="variable"><name>domain</name></member>
+    <member refid="structCandidate_1aa85886d00c41915acae10e4a3d8843c5" kind="variable"><name>t</name></member>
+    <member refid="structCandidate_1a79a1c268d8000a91b0c0e5108d3bbddc" kind="variable"><name>q</name></member>
+    <member refid="structCandidate_1a31bee50333f716d41d0d2b456d1a9cbc" kind="variable"><name>ttl</name></member>
+    <member refid="structCandidate_1a5e00fbe86010ba565a3a74cdac745cf7" kind="variable"><name>r</name></member>
+    <member refid="structCandidate_1a99cbcb4edb040eb425025f1a3692ee13" kind="variable"><name>g</name></member>
+  </compound>
+  <compound refid="structDomainInfo" kind="struct"><name>DomainInfo</name>
+    <member refid="structDomainInfo_1a5477a844a2c05a72fec2f7990bd7fc63" kind="variable"><name>domain</name></member>
+    <member refid="structDomainInfo_1a8e5f41ab5d9877e5c76f4620d32c2fbe" kind="variable"><name>ttl</name></member>
+    <member refid="structDomainInfo_1a5a43c01e33681dcb29933dedc330d33b" kind="variable"><name>ips</name></member>
+    <member refid="structDomainInfo_1a9f5c00b47f82b80475d7a7a3fdf2ddaa" kind="variable"><name>t</name></member>
+  </compound>
+  <compound refid="classKafkaConnector" kind="class"><name>KafkaConnector</name>
+    <member refid="classKafkaConnector_1a968669fdbf545399416aacff34a8f622" kind="variable"><name>topic</name></member>
+    <member refid="classKafkaConnector_1a52dadc0722de5375ae9257842ce727ba" kind="variable"><name>config</name></member>
+    <member refid="classKafkaConnector_1aac183438275dc4dcd40f24d6bd3a7f47" kind="function"><name>KafkaConnector</name></member>
+    <member refid="classKafkaConnector_1aa3ed5d63f688d31347ed691e86fd40da" kind="function"><name>push</name></member>
+  </compound>
+  <compound refid="classPeriodicListPrunning" kind="class"><name>PeriodicListPrunning</name>
+    <member refid="classPeriodicListPrunning_1a185475fec9a559740d30ae9129fe04f5" kind="function"><name>push</name></member>
+  </compound>
+  <compound refid="classTrafficeVolumeReduction" kind="class"><name>TrafficeVolumeReduction</name>
+    <member refid="classTrafficeVolumeReduction_1a2caf6ee234b1b5c4735b6bf8e24fa384" kind="function"><name>F1a</name></member>
+    <member refid="classTrafficeVolumeReduction_1a0eb22c69d16d1a5f6420fd95b2bc0ae2" kind="function"><name>F1b</name></member>
+    <member refid="classTrafficeVolumeReduction_1a0705ccc86840fd6501afead91a12576f" kind="function"><name>F1c</name></member>
+    <member refid="classTrafficeVolumeReduction_1a28be7f871735706ebc60e8792812e91f" kind="function"><name>F1</name></member>
+  </compound>
+  <compound refid="namespaceboost_1_1program__options" kind="namespace"><name>boost::program_options</name>
+  </compound>
+  <compound refid="namespacecppkafka" kind="namespace"><name>cppkafka</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespaceTins" kind="namespace"><name>Tins</name>
+  </compound>
+  <compound refid="config_8h" kind="file"><name>config.h</name>
+    <member refid="config_8h_1accc051a817df8351e00b1d1af7bf2426" kind="define"><name>IP_TYPE</name></member>
+    <member refid="config_8h_1a64d179d31ee498f4295cde488d5e18ec" kind="define"><name>KAFKA</name></member>
+  </compound>
+  <compound refid="KafkaConnector_8h" kind="file"><name>KafkaConnector.h</name>
+    <member refid="KafkaConnector_8h_1ab701e3ac61a85b337ec5c1abaad6742d" kind="typedef"><name>json</name></member>
+  </compound>
+  <compound refid="PeriodicListPrunning_8h" kind="file"><name>PeriodicListPrunning.h</name>
+  </compound>
+  <compound refid="TrafficeVolumeReduction_8h" kind="file"><name>TrafficeVolumeReduction.h</name>
+    <member refid="TrafficeVolumeReduction_8h_1ab701e3ac61a85b337ec5c1abaad6742d" kind="typedef"><name>json</name></member>
+  </compound>
+  <compound refid="KafkaConnector_8cpp" kind="file"><name>KafkaConnector.cpp</name>
+  </compound>
+  <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
+    <member refid="main_8cpp_1ab701e3ac61a85b337ec5c1abaad6742d" kind="typedef"><name>json</name></member>
+    <member refid="main_8cpp_1ab8fb172ecb0341f40bc3c6e71f39764e" kind="variable"><name>L</name></member>
+    <member refid="main_8cpp_1a8ff97f804927070eaaa49c56b305fe53" kind="variable"><name>L_mutex</name></member>
+    <member refid="main_8cpp_1ac753e17f1f23e4ee3fe49c265b482618" kind="variable"><name>broker_list</name></member>
+    <member refid="main_8cpp_1a29fc9cc055a2b4091187c6c5d2cca9c7" kind="variable"><name>topic</name></member>
+    <member refid="main_8cpp_1aa39feb601629debdf7f65977b66adc81" kind="variable"><name>ssl</name></member>
+    <member refid="main_8cpp_1aff0791bc68f5624ce72ddee92fed27b9" kind="function"><name>timer_start</name></member>
+    <member refid="main_8cpp_1aa590aefdf2aaafef461b2594f72d7b31" kind="function"><name>F2a</name></member>
+    <member refid="main_8cpp_1a598a929004e3d88b9b324e6ba623e841" kind="function"><name>converttojson</name></member>
+    <member refid="main_8cpp_1a9e23f5fe575cbc4c006e22e3efac3252" kind="function"><name>resolveDomain</name></member>
+    <member refid="main_8cpp_1a6b02062fa4264e2bf0e17b5ac5831536" kind="function"><name>callback</name></member>
+    <member refid="main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="PeriodicListPrunning_8cpp" kind="file"><name>PeriodicListPrunning.cpp</name>
+  </compound>
+  <compound refid="TrafficeVolumeReduction_8cpp" kind="file"><name>TrafficeVolumeReduction.cpp</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/user/CLionProjects/pdns/include</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>/home/user/CLionProjects/pdns/src</name>
+  </compound>
+</doxygenindex>

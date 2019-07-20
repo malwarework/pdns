@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classTrafficeVolumeReduction" kind="class" language="C++" prot="public">
+    <compoundname>TrafficeVolumeReduction</compoundname>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classTrafficeVolumeReduction_1a2caf6ee234b1b5c4735b6bf8e24fa384" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TrafficeVolumeReduction::F1a</definition>
+        <argsstring>(const DomainInfo &amp;, unsigned short int)</argsstring>
+        <name>F1a</name>
+        <param>
+          <type>const <ref refid="structDomainInfo" kindref="compound">DomainInfo</ref> &amp;</type>
+          <defname>obj</defname>
+        </param>
+        <param>
+          <type>unsigned short</type>
+          <declname>int</declname>
+          <defname>ttl</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="32" column="1" bodyfile="/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp" bodystart="8" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classTrafficeVolumeReduction_1a0eb22c69d16d1a5f6420fd95b2bc0ae2" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TrafficeVolumeReduction::F1b</definition>
+        <argsstring>(const DomainInfo &amp;, unsigned int, unsigned short int)</argsstring>
+        <name>F1b</name>
+        <param>
+          <type>const <ref refid="structDomainInfo" kindref="compound">DomainInfo</ref> &amp;</type>
+          <defname>obj</defname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>int</declname>
+          <defname>lenpd</defname>
+        </param>
+        <param>
+          <type>unsigned short</type>
+          <declname>int</declname>
+          <defname>ttl</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="33" column="1" bodyfile="/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp" bodystart="12" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classTrafficeVolumeReduction_1a0705ccc86840fd6501afead91a12576f" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TrafficeVolumeReduction::F1c</definition>
+        <argsstring>(const DomainInfo &amp;)</argsstring>
+        <name>F1c</name>
+        <param>
+          <type>const <ref refid="structDomainInfo" kindref="compound">DomainInfo</ref> &amp;</type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="34" column="1" bodyfile="/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp" bodystart="16" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTrafficeVolumeReduction_1a28be7f871735706ebc60e8792812e91f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TrafficeVolumeReduction::F1</definition>
+        <argsstring>(const DomainInfo &amp;)</argsstring>
+        <name>F1</name>
+        <param>
+          <type>const <ref refid="structDomainInfo" kindref="compound">DomainInfo</ref> &amp;</type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="36" column="1" bodyfile="/home/user/CLionProjects/pdns/src/TrafficeVolumeReduction.cpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" line="30" column="1" bodyfile="/home/user/CLionProjects/pdns/include/TrafficeVolumeReduction.h" bodystart="30" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classTrafficeVolumeReduction_1a28be7f871735706ebc60e8792812e91f" prot="public" virt="non-virtual"><scope>TrafficeVolumeReduction</scope><name>F1</name></member>
+      <member refid="classTrafficeVolumeReduction_1a2caf6ee234b1b5c4735b6bf8e24fa384" prot="private" virt="non-virtual"><scope>TrafficeVolumeReduction</scope><name>F1a</name></member>
+      <member refid="classTrafficeVolumeReduction_1a0eb22c69d16d1a5f6420fd95b2bc0ae2" prot="private" virt="non-virtual"><scope>TrafficeVolumeReduction</scope><name>F1b</name></member>
+      <member refid="classTrafficeVolumeReduction_1a0705ccc86840fd6501afead91a12576f" prot="private" virt="non-virtual"><scope>TrafficeVolumeReduction</scope><name>F1c</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -22,12 +22,11 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
 
 before_script:
-#  - mkdir build
-#  - cd build
-#  - cmake ..
+  - cd build
 
 script:
   - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
+  - dpkg -i passivedns-1.0.deb
   # once CMake has done its job we just build using make as usual
   #- make
   # if the project uses ctest we can run the tests like this

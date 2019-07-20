@@ -20,11 +20,11 @@ install:
   - mv cmake-3.14.5 cmake-install
   - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   - cd ${TRAVIS_BUILD_DIR}
-#
-#before_script:
-#  - cd build
 
 script:
   - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
   - cd build
   - sudo dpkg -i passivedns-1.0.deb
+  - whereis passivedns
+  - ls -la /etc/passivedns/passivedns.conf
+  - sudo passivedns -h

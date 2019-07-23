@@ -86,7 +86,7 @@ install(FILES lib/boost/lib/libboost_program_options.a lib/boost/lib/libboost_pr
 install(DIRECTORY lib/boost/include/boost/program_options DESTINATION include/boost)
 set(CPACK_TGZ_COMPONENT_INSTALL ON)
 set(CPACK_COMPONENT_ALL deb)
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libpcap-dev zlib1g-dev python-dev libssl-dev openssl")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libpcap-dev, zlib1g-dev, python-dev, libssl-dev, openssl")
 set(CPACK_COMPONENTS_ALL deb)
 set(CPACK_GENERATOR "RPM;DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "PDNS")

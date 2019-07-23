@@ -25,6 +25,7 @@
 
 ## Installation
 * In case if **Ubuntu**<p>
-Run as root <b>`dpkg -i passivedns-*.deb`</b>
+Run as root <b>`dpkg -i passivedns-*.deb`</b><p>
+Run as root <b>`sudo apt-get install -f`</b>
 * In case if **Centos**<p>
 Run <b>`rpm -ivh passivedns-*.rpm`</b>

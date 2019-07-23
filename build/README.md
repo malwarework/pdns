@@ -9,3 +9,4 @@
 1. Start/Stop/Reload/Status of passivedns `sudo systemctl {start/stop/restart/status} passivedns`
 
 ## Centos/RHEL/Fedora
+:TODO Add installation

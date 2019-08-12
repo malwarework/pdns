@@ -309,7 +309,6 @@ int main(int argc, char* argv[])
     /// Only capture udp packets sent to port 53
     config.set_filter("udp and src port 53");
     Sniffer sniffer(interface, config);
-
     /// Start the capture
     sniffer.sniff_loop(callback);
 #ifdef SYSLOG

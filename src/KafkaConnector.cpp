@@ -18,7 +18,6 @@ KafkaConnector::KafkaConnector(std::string broker_list, std::string topic, bool 
     }
 
     this->topic = topic;
-
 }
 
 

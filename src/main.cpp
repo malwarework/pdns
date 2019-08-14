@@ -13,13 +13,17 @@
 #include <syslog.h>
 #include <sys/stat.h>
 
+#include "../include/config.h"
 #include "../include/TrafficeVolumeReduction.h"
 #include "../include/PeriodicListPrunning.h"
+
 
 #ifdef KAFKA
 #include "../include/KafkaConnector.h"
 #endif
-
+#ifndef KAFKA
+#include "../include/httplib.h"
+#endif
 
 using std::cout;
 using std::endl;
@@ -28,6 +32,10 @@ using namespace cppkafka;
 using namespace boost::program_options;
 using namespace Tins;
 using namespace std;
+#ifndef KAFKA
+using namespace httplib;
+#endif
+
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
@@ -122,6 +130,22 @@ void converttojson(std::vector<Candidate>& _L)
 #ifdef KAFKA
     KafkaConnector kafka(broker_list, topic);
     kafka.push(jv);
+#else
+#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
+    httplib::SSLClient cli("localhost", 3000);
+#else
+    httplib::Client cli("localhost", 3000);
+#endif
+    for (json value : jv)
+    {
+        string payload = value.dump();
+        auto res = cli.Post("/", payload, "application/json");
+#ifdef DEBUG
+        if (res) {
+            cout << res->status << endl;
+        }
+#endif
+    }
 #endif
     L.clear();
     L_mutex.unlock();

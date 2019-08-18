@@ -36,13 +36,15 @@ using namespace std;
 using namespace httplib;
 #endif
 
+char *host = "localhost";
+bool ssl = false;
+int port = 3000;
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
 
 string broker_list;
 string topic;
-bool ssl = false;
 
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
@@ -122,9 +124,6 @@ void converttojson(std::vector<Candidate>& _L)
 #ifdef DEBUG
         cout << j << endl;
 #endif
-#ifdef SYSLOG
-        syslog(LOG_ERR, "Could not generate session ID for child process");
-#endif
         jv.push_back(j);
     }
 #ifdef KAFKA
@@ -132,9 +131,9 @@ void converttojson(std::vector<Candidate>& _L)
     kafka.push(jv);
 #else
 #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
-    httplib::SSLClient cli("localhost", 3000);
+    httplib::SSLClient cli(host, port);
 #else
-    httplib::Client cli("localhost", 3000);
+    httplib::Client cli(host, port);
 #endif
     for (json value : jv)
     {
@@ -233,14 +232,19 @@ int main(int argc, char* argv[])
 
     options_description desc("Allowed options");
     desc.add_options()
-            ("help,h", "produce help message")
+            ("help", "produce help message")
 #ifdef DEBUG
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
 #else
     ("config,c", value<string>()->default_value("/etc/passivedns/passivedns.conf"), "config file path")
 #endif
 #ifdef KAFKA
+#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
             ("ssl,s", "ssl connection")
+#endif
+#else
+            ("host,h", value<string>()->default_value(host), "hostname value")
+            ("port,p", value<int>()->default_value(port), "port value")
 #endif
             ("daemon,d", "daemonize passivedns");
 
@@ -256,6 +260,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    //Enable encryption
     if(vm.count("ssl"))
     {
         ssl = true;
@@ -269,8 +274,22 @@ int main(int argc, char* argv[])
     }
     boost::property_tree::ini_parser::read_ini(configfile, pt);
     string interface = pt.get<std::string>("Global.interface");
+#ifdef KAFKA
     broker_list = pt.get<std::string>("Kafka.brokers");
     topic = pt.get<std::string>("Kafka.topic");
+#else
+    //Set hostname
+    if(vm.count("host"))
+        host = vm["host"].as<char*>();
+    else
+        host = pt.get<char*>("HTTP.host");
+
+    //Set port
+    if(vm.count("port"))
+        port = vm["port"].as<int>();
+    else
+        port = stoi(pt.get<std::string>("HTTP.port"));
+#endif
 
     if(vm.count("daemon"))
     {

@@ -10,8 +10,7 @@
  */
 //#define IP_TYPE IPv4Address
 #define IP_TYPE std::string
-#define DEBUG
-//#define ERROR
+#define ERROR
 //#define KAFKA
 #define SYSLOG
 //#define CPPHTTPLIB_OPENSSL_SUPPORT

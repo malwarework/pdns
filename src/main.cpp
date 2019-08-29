@@ -5,7 +5,6 @@
 #include <vector>
 #include <thread>
 #include <mutex>
-#include <cppkafka/cppkafka.h>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/program_options.hpp>
@@ -16,35 +15,22 @@
 #include "../include/config.h"
 #include "../include/TrafficeVolumeReduction.h"
 #include "../include/PeriodicListPrunning.h"
-
-
-#ifdef KAFKA
-#include "../include/KafkaConnector.h"
-#endif
-#ifndef KAFKA
 #include "../include/httplib.h"
-#endif
 
 using std::cout;
 using std::endl;
 using json = nlohmann::json;
-using namespace cppkafka;
 using namespace boost::program_options;
 using namespace Tins;
 using namespace std;
-#ifndef KAFKA
 using namespace httplib;
-#endif
 
 string host = "localhost";
 bool ssl = false;
-int port = 3000;
+int port = 80;
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
-
-string broker_list;
-string topic;
 
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
@@ -126,10 +112,6 @@ void converttojson(std::vector<Candidate>& _L)
 #endif
         jv.push_back(j);
     }
-#ifdef KAFKA
-    KafkaConnector kafka(broker_list, topic);
-    kafka.push(jv);
-#else
 #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
     httplib::SSLClient cli(host.c_str(), port);
 #else
@@ -145,7 +127,6 @@ void converttojson(std::vector<Candidate>& _L)
         }
 #endif
     }
-#endif
     L.clear();
     L_mutex.unlock();
 }
@@ -238,14 +219,9 @@ int main(int argc, char* argv[])
 #else
     ("config,c", value<string>()->default_value("/etc/passivedns/passivedns.conf"), "config file path")
 #endif
-#ifdef KAFKA
-#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
             ("ssl,s", "ssl connection")
-#endif
-#else
             ("host,h", value<string>()->default_value(host), "hostname value")
             ("port,p", value<int>()->default_value(port), "port value")
-#endif
             ("daemon,d", "daemonize passivedns");
 
     variables_map vm;
@@ -274,10 +250,7 @@ int main(int argc, char* argv[])
     }
     boost::property_tree::ini_parser::read_ini(configfile, pt);
     string interface = pt.get<std::string>("Global.interface");
-#ifdef KAFKA
-    broker_list = pt.get<std::string>("Kafka.brokers");
-    topic = pt.get<std::string>("Kafka.topic");
-#else
+
     //Set hostname
     if(vm.count("host"))
         host = vm["host"].as<string>();
@@ -289,7 +262,6 @@ int main(int argc, char* argv[])
         port = vm["port"].as<int>();
     else
         port = stoi(pt.get<std::string>("HTTP.port"));
-#endif
 
     if(vm.count("daemon"))
     {

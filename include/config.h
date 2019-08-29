@@ -13,4 +13,5 @@
 #define ERROR
 //#define KAFKA
 #define SYSLOG
+#define DEBUG
 //#define CPPHTTPLIB_OPENSSL_SUPPORT

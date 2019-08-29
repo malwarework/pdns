@@ -36,7 +36,7 @@ using namespace std;
 using namespace httplib;
 #endif
 
-char *host = "localhost";
+string host = "localhost";
 bool ssl = false;
 int port = 3000;
 
@@ -131,9 +131,9 @@ void converttojson(std::vector<Candidate>& _L)
     kafka.push(jv);
 #else
 #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
-    httplib::SSLClient cli(host, port);
+    httplib::SSLClient cli(host.c_str(), port);
 #else
-    httplib::Client cli(host, port);
+    httplib::Client cli(host.c_str(), port);
 #endif
     for (json value : jv)
     {
@@ -280,9 +280,9 @@ int main(int argc, char* argv[])
 #else
     //Set hostname
     if(vm.count("host"))
-        host = vm["host"].as<char*>();
+        host = vm["host"].as<string>();
     else
-        host = pt.get<char*>("HTTP.host");
+        host = pt.get<string>("HTTP.host");
 
     //Set port
     if(vm.count("port"))

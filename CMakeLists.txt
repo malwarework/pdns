@@ -64,7 +64,7 @@ install(FILES passivedns.service PERMISSIONS WORLD_READ DESTINATION /etc/systemd
 
 set(CPACK_TGZ_COMPONENT_INSTALL ON)
 set(CPACK_COMPONENT_ALL deb)
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "systemd, libpcap-dev, zlib1g-dev, python-dev, libssl-dev, openssl")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "systemd, libpcap-dev, zlib1g-dev, python-dev, libssl-dev, openssl, systems")
 set(CPACK_COMPONENTS_ALL deb)
 set(CPACK_GENERATOR "RPM;DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "PDNS")

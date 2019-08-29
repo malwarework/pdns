@@ -52,13 +52,13 @@ target_include_directories(passivedns PRIVATE ${boost_INCLUDE_DIR} ${json_INCLUD
 target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} OpenSSL::Crypto nlohmann_json::nlohmann_json)
 
 
-install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS OWNER_EXECUTE)
+install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)
 
 install(DIRECTORY lib/libtins/lib/ DESTINATION lib)
 install(DIRECTORY lib/libtins/include/ DESTINATION include)
 install(DIRECTORY lib/boost/include/boost/program_options DESTINATION include/boost)
 
-install(FILES passivedns.conf PERMISSIONS WORLD_WRITE DESTINATION /etc/passivedns)
+install(FILES passivedns.conf PERMISSIONS WORLD_WRITE WORLD_READ OWNER_EXECUTE DESTINATION /etc/passivedns)
 install(FILES lib/boost/lib/libboost_program_options.a lib/boost/lib/libboost_program_options.so lib/boost/lib/libboost_program_options.so.1 lib/boost/lib/libboost_program_options.so.1.70.0 lib/boost/lib/libboost_program_options.so.1.70 DESTINATION lib)
 install(FILES passivedns.service PERMISSIONS WORLD_READ DESTINATION /etc/systemd/system)
 

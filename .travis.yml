@@ -35,4 +35,4 @@ deploy:
   file: "build/passivedns-2.2.deb"
   skip_cleanup: true
   on:
-    tags: true
+    tags: false

@@ -173,7 +173,7 @@ bool callback(const PDU& pdu)
     for (const auto& answer : dns.answers())
     {
         if (answer.query_type() == DNS::A){
-            _dns.domain = answer.dname();
+            _dns.domain = boost::algorithm::to_lower_copy(answer.dname());
             trim_left_if(_dns.domain, boost::is_any_of("www."));
             _dns.ttl = answer.ttl();
             try

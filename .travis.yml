@@ -28,3 +28,11 @@ script:
   - sudo dpkg -i passivedns-2.2.deb
   - whereis passivedns
   - ls -la /etc/passivedns/passivedns.conf
+
+deploy:
+  provider: releases
+  api_key: "04d0b30063d0c126180dd79e2da462d29f456dad"
+  file: "build/passivedns-2.2.deb"
+  skip_cleanup: true
+  on:
+    tags: true

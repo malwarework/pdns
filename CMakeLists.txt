@@ -58,7 +58,7 @@ install(DIRECTORY lib/libtins/lib/ DESTINATION lib)
 install(DIRECTORY lib/libtins/include/ DESTINATION include)
 install(DIRECTORY lib/boost/include/boost/program_options DESTINATION include/boost)
 
-install(FILES passivedns.conf PERMISSIONS WORLD_WRITE WORLD_READ OWNER_EXECUTE DESTINATION /etc/passivedns)
+install(FILES passivedns.conf PERMISSIONS WORLD_WRITE WORLD_READ OWNER_WRITE OWNER_READ DESTINATION /etc/passivedns)
 install(FILES lib/boost/lib/libboost_program_options.a lib/boost/lib/libboost_program_options.so lib/boost/lib/libboost_program_options.so.1 lib/boost/lib/libboost_program_options.so.1.70.0 lib/boost/lib/libboost_program_options.so.1.70 DESTINATION lib)
 install(FILES passivedns.service PERMISSIONS WORLD_READ DESTINATION /etc/systemd/system)
 

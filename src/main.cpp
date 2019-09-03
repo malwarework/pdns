@@ -94,7 +94,8 @@ void F2a(std::vector<Candidate>& _L)
 
 void converttojson(std::vector<Candidate>& _L)
 {
-    std::vector<json> jv;
+    //std::vector<json> jv;
+    json jv;
     L_mutex.lock();
     for (Candidate value : L)
     {
@@ -107,19 +108,19 @@ void converttojson(std::vector<Candidate>& _L)
         j["R"] = j_set;
         json j_vec(value.g);
         j["G"] = j_vec;
-#ifdef DEBUG
-        cout << j << endl;
-#endif
         jv.push_back(j);
     }
-#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
-    httplib::SSLClient cli(host.c_str(), port);
-#else
-    httplib::Client cli(host.c_str(), port);
-#endif
-    for (json value : jv)
+    if (jv.size() > 0)
     {
-        string payload = value.dump();
+#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
+        httplib::SSLClient cli(host.c_str(), port);
+#else
+        httplib::Client cli(host.c_str(), port);
+#endif
+        string payload = jv.dump();
+#ifdef DEBUG
+        cout << payload << endl;
+#endif
         auto res = cli.Post("/", payload, "application/json");
 #ifdef DEBUG
         if (res) {

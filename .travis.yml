@@ -25,6 +25,6 @@ install:
 script:
   - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
   - cd build
-  - sudo dpkg -i passivedns-2.2.deb
+  - sudo dpkg -i passivedns-2.3.deb
   - whereis passivedns
   - ls -la /etc/passivedns/passivedns.conf

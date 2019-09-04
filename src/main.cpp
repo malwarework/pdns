@@ -221,8 +221,6 @@ int main(int argc, char* argv[])
     ("config,c", value<string>()->default_value("/etc/passivedns/passivedns.conf"), "config file path")
 #endif
             ("ssl,s", "ssl connection")
-            ("host,h", value<string>()->default_value(host), "hostname value")
-            ("port,p", value<int>()->default_value(port), "port value")
             ("daemon,d", "daemonize passivedns");
 
     variables_map vm;
@@ -253,16 +251,9 @@ int main(int argc, char* argv[])
     string interface = pt.get<std::string>("Global.interface");
 
     //Set hostname
-    if(vm.count("host"))
-        host = vm["host"].as<string>();
-    else
-        host = pt.get<string>("HTTP.host");
-
+    host = pt.get<string>("HTTP.host");
     //Set port
-    if(vm.count("port"))
-        port = vm["port"].as<int>();
-    else
-        port = stoi(pt.get<std::string>("HTTP.port"));
+    port = stoi(pt.get<std::string>("HTTP.port"));
 
     if(vm.count("daemon"))
     {

@@ -6,6 +6,7 @@ before_install:
   - sudo apt-get install zlib1g-dev
   - sudo apt-get install openssl libssl-dev
   - sudo apt-get install libpcap-dev
+  - sudo apt-get install systemd
 
 language: cpp
 compiler:
@@ -24,6 +25,6 @@ install:
 script:
   - cppcheck src/*.cpp --verbose --enable=all --inconclusive --check-config
   - cd build
-  - sudo dpkg -i passivedns-2.0.deb
+  - sudo dpkg -i passivedns-2.3.deb
   - whereis passivedns
   - ls -la /etc/passivedns/passivedns.conf

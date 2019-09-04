@@ -9,7 +9,7 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
 
     bool inArray = false;
     /*
-     * :TODO There фку problems with calculating Gi and Ri
+     * :TODO There are problems with calculating Gi and Ri
      */
     for (Candidate& elem : L){
         if(elem.domain == domain.domain){

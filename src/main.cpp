@@ -5,7 +5,6 @@
 #include <vector>
 #include <thread>
 #include <mutex>
-#include <cppkafka/cppkafka.h>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/program_options.hpp>
@@ -13,28 +12,25 @@
 #include <syslog.h>
 #include <sys/stat.h>
 
+#include "../include/config.h"
 #include "../include/TrafficeVolumeReduction.h"
 #include "../include/PeriodicListPrunning.h"
-
-#ifdef KAFKA
-#include "../include/KafkaConnector.h"
-#endif
-
+#include "../include/httplib.h"
 
 using std::cout;
 using std::endl;
 using json = nlohmann::json;
-using namespace cppkafka;
 using namespace boost::program_options;
 using namespace Tins;
 using namespace std;
+using namespace httplib;
+
+string host = "localhost";
+bool ssl = false;
+int port = 80;
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
-
-string broker_list;
-string topic;
-bool ssl = false;
 
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
@@ -98,7 +94,8 @@ void F2a(std::vector<Candidate>& _L)
 
 void converttojson(std::vector<Candidate>& _L)
 {
-    std::vector<json> jv;
+    //std::vector<json> jv;
+    json jv;
     L_mutex.lock();
     for (Candidate value : L)
     {
@@ -111,18 +108,26 @@ void converttojson(std::vector<Candidate>& _L)
         j["R"] = j_set;
         json j_vec(value.g);
         j["G"] = j_vec;
-#ifdef DEBUG
-        cout << j << endl;
-#endif
-#ifdef SYSLOG
-        syslog(LOG_ERR, "Could not generate session ID for child process");
-#endif
         jv.push_back(j);
     }
-#ifdef KAFKA
-    KafkaConnector kafka(broker_list, topic);
-    kafka.push(jv);
+    if (jv.size() > 0)
+    {
+#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
+        httplib::SSLClient cli(host.c_str(), port);
+#else
+        httplib::Client cli(host.c_str(), port);
 #endif
+        string payload = jv.dump();
+#ifdef DEBUG
+        cout << payload << endl;
+#endif
+        auto res = cli.Post("/", payload, "application/json");
+#ifdef DEBUG
+        if (res) {
+            cout << res->status << endl;
+        }
+#endif
+    }
     L.clear();
     L_mutex.unlock();
 }
@@ -168,7 +173,7 @@ bool callback(const PDU& pdu)
     for (const auto& answer : dns.answers())
     {
         if (answer.query_type() == DNS::A){
-            _dns.domain = answer.dname();
+            _dns.domain = boost::algorithm::to_lower_copy(answer.dname());
             trim_left_if(_dns.domain, boost::is_any_of("www."));
             _dns.ttl = answer.ttl();
             try
@@ -209,15 +214,13 @@ int main(int argc, char* argv[])
 
     options_description desc("Allowed options");
     desc.add_options()
-            ("help,h", "produce help message")
+            ("help", "produce help message")
 #ifdef DEBUG
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
 #else
     ("config,c", value<string>()->default_value("/etc/passivedns/passivedns.conf"), "config file path")
 #endif
-#ifdef KAFKA
             ("ssl,s", "ssl connection")
-#endif
             ("daemon,d", "daemonize passivedns");
 
     variables_map vm;
@@ -232,6 +235,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    //Enable encryption
     if(vm.count("ssl"))
     {
         ssl = true;
@@ -245,8 +249,11 @@ int main(int argc, char* argv[])
     }
     boost::property_tree::ini_parser::read_ini(configfile, pt);
     string interface = pt.get<std::string>("Global.interface");
-    broker_list = pt.get<std::string>("Kafka.brokers");
-    topic = pt.get<std::string>("Kafka.topic");
+
+    //Set hostname
+    host = pt.get<string>("HTTP.host");
+    //Set port
+    port = stoi(pt.get<std::string>("HTTP.port"));
 
     if(vm.count("daemon"))
     {
@@ -295,8 +302,8 @@ int main(int argc, char* argv[])
         close(STDERR_FILENO);
     }
 #ifdef DEBUG
-    timer_start(F2a, 300);
-    timer_start(converttojson, 900, false);
+    timer_start(F2a, 30);
+    timer_start(converttojson, 90, false);
 #else
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));

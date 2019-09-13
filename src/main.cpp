@@ -36,31 +36,37 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
 {
     PeriodicListPrunning filter2;
     std::thread([func, filter2, interval, cron]() {
-        if(cron){
-            func(L);
-#ifdef DEBUG
-            std::this_thread::sleep_for(std::chrono::seconds(interval));
-#else
-            tm timeout_tm={0};
-            timeout_tm.tm_hour = 0;
-            timeout_tm.tm_min = 0;
-            timeout_tm.tm_sec = 0;
-            timeout_tm.tm_isdst = -1;
-            time_t timeout_time_t=mktime(&timeout_tm);
-            std::chrono::system_clock::time_point timeout_tp =
-                    std::chrono::system_clock::from_time_t(timeout_time_t);
-            std::this_thread::sleep_until(timeout_tp);
-            std::this_thread::sleep_for(std::chrono::hours(interval));
-#endif
-        }
-        while (true)
+        if(cron)
         {
-            func(L);
+            while(true)
+            {
 #ifdef DEBUG
-            std::this_thread::sleep_for(std::chrono::seconds(interval));
+                std::this_thread::sleep_for(std::chrono::seconds(interval));
 #else
-            std::this_thread::sleep_for(std::chrono::hours(interval));
+                tm timeout_tm={0};
+                timeout_tm.tm_hour = 0;
+                timeout_tm.tm_min = 0;
+                timeout_tm.tm_sec = 0;
+                timeout_tm.tm_isdst = -1;
+                time_t timeout_time_t=mktime(&timeout_tm);
+                std::chrono::system_clock::time_point timeout_tp =
+                        std::chrono::system_clock::from_time_t(timeout_time_t);
+                std::this_thread::sleep_until(timeout_tp);
 #endif
+                func(L)
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                func(L);
+#ifdef DEBUG
+                std::this_thread::sleep_for(std::chrono::seconds(interval));
+#else
+                std::this_thread::sleep_for(std::chrono::hours(interval));
+#endif
+            }
         }
     }).detach();
 }

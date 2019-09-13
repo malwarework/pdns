@@ -87,11 +87,11 @@ void F2a(std::vector<Candidate>& _L)
 
         if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5)))
         {
-            ++value;
+            value = L.erase(value);
         }
         else
         {
-            value = L.erase(value);
+            ++value;
         }
     }
     L_mutex.unlock();

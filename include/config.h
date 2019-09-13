@@ -8,6 +8,16 @@
  * KAFKA - enable suuport of kafka
  * SYSLOG - output to syslog
  */
+#include <vector>
+#include <tins/tins.h>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <ctime>
+/////////////////////
+using namespace std;
+using json = nlohmann::json;
+using namespace Tins;
+/////////////////////
 //#define IP_TYPE IPv4Address
 #define IP_TYPE std::string
 //#define ERROR

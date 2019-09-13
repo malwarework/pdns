@@ -6,17 +6,7 @@
 #define PASSIVEDNS_TRAFFICEVOLUMEREDUCTION_H
 
 #include "config.h"
-#include <nlohmann/json.hpp>
-#include <vector>
 #include <boost/algorithm/string.hpp>
-#include <tins/tins.h>
-#include <ctime>
-#include <iostream>
-
-using namespace Tins;
-using namespace std;
-using json = nlohmann::json;
-
 
 /// Structure for data domains
 struct DomainInfo {

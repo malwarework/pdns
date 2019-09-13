@@ -44,8 +44,8 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
                 std::this_thread::sleep_for(std::chrono::seconds(interval));
 #else
                 tm timeout_tm={0};
-                timeout_tm.tm_hour = 0;
-                timeout_tm.tm_min = 0;
+                timeout_tm.tm_hour = 12;
+                timeout_tm.tm_min = 15;
                 timeout_tm.tm_sec = 0;
                 timeout_tm.tm_isdst = -1;
                 time_t timeout_time_t=mktime(&timeout_tm);

@@ -32,41 +32,46 @@ int port = 80;
 std::vector<Candidate> L;
 std::mutex L_mutex;
 
+void print_time_point(std::chrono::system_clock::time_point timePoint)
+{
+    std::time_t timeStamp = std::chrono::system_clock::to_time_t(timePoint);
+    std::cout << std::ctime(&timeStamp) << std::endl;
+
+}
+
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
     PeriodicListPrunning filter2;
     std::thread([func, filter2, interval, cron]() {
         if(cron)
         {
-            while(true)
-            {
 #ifdef DEBUG
-                std::this_thread::sleep_for(std::chrono::seconds(interval));
+            std::this_thread::sleep_for(std::chrono::seconds(interval));
 #else
-                tm timeout_tm={0};
-                timeout_tm.tm_hour = 12;
-                timeout_tm.tm_min = 15;
-                timeout_tm.tm_sec = 0;
-                timeout_tm.tm_isdst = -1;
-                time_t timeout_time_t=mktime(&timeout_tm);
-                std::chrono::system_clock::time_point timeout_tp =
-                        std::chrono::system_clock::from_time_t(timeout_time_t);
-                std::this_thread::sleep_until(timeout_tp);
+            tm timeout_tm={0};
+            timeout_tm.tm_hour = 0;
+            timeout_tm.tm_min = 0;
+            timeout_tm.tm_sec = 0;
+            timeout_tm.tm_isdst = -1;
+            time_t timeout_time_t=mktime(&timeout_tm);
+            std::chrono::system_clock::time_point timeout_tp =
+                    std::chrono::system_clock::from_time_t(timeout_time_t);
+            std::cout<<"Current Time :: ";
+            print_time_point(std::chrono::system_clock::now());
+            std::this_thread::sleep_until(timeout_tp);
+            std::cout<<"Current Time :: ";
+            // Print Current Time
+            print_time_point(std::chrono::system_clock::now());
 #endif
-                func(L);
-            }
         }
-        else
+        while (true)
         {
-            while (true)
-            {
-                func(L);
+            func(L);
 #ifdef DEBUG
-                std::this_thread::sleep_for(std::chrono::seconds(interval));
+            std::this_thread::sleep_for(std::chrono::seconds(interval));
 #else
-                std::this_thread::sleep_for(std::chrono::hours(interval));
+            std::this_thread::sleep_for(std::chrono::hours(interval));
 #endif
-            }
         }
     }).detach();
 }

@@ -56,8 +56,11 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
             time_t timeout_time_t=mktime(&timeout_tm);
             std::chrono::system_clock::time_point timeout_tp =
                     std::chrono::system_clock::from_time_t(timeout_time_t);
+            //////////////////
             std::cout<<"Current Time :: ";
             print_time_point(std::chrono::system_clock::now());
+            std::cout << "Going to Sleep Until :: "; print_time_point(timeout_tp);
+            //////////////////
             std::this_thread::sleep_until(timeout_tp);
             std::cout<<"Current Time :: ";
             // Print Current Time

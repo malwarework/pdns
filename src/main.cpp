@@ -48,35 +48,18 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
 #ifdef DEBUG
             std::this_thread::sleep_for(std::chrono::seconds(interval));
 #else
-//            tm timeout_tm={0};
-//            tm *test_timeout_tm;
-//            timeout_tm.tm_hour = 0;
-//            timeout_tm.tm_min = 0;
-//            timeout_tm.tm_sec = 0;
-//            timeout_tm.tm_isdst = -1;
-//            time_t timeout_time_t=mktime(&timeout_tm);
-
+            tm *timeout_tm;
             time_t now = chrono::system_clock::to_time_t(chrono::system_clock::now());
-            test_timeout_tm = gmtime(&now);
-            test_timeout_tm->tm_hour = 0;
-            test_timeout_tm->tm_min = 0;
-            test_timeout_tm->tm_sec = 0;
-            time_t test_timeout_time_t=mktime(&timeout_tm);
+            timeout_tm = gmtime(&now);
+            timeout_tm->tm_hour = 0;
+            timeout_tm->tm_min = 0;
+            timeout_tm->tm_sec = 0;
+            timeout_tm->tm_mday += 1;
+            time_t timeout_time_t=mktime(timeout_tm);
 
-
-//            std::chrono::system_clock::time_point timeout_tp =
-//                    std::chrono::system_clock::from_time_t(timeout_time_t);
             std::chrono::system_clock::time_point timeout_tp =
-                    std::chrono::system_clock::from_time_t(test_timeout_time_t);
-            //////////////////
-            std::cout<<"Current Time :: ";
-            print_time_point(std::chrono::system_clock::now());
-            std::cout << "Going to Sleep Until :: "; print_time_point(timeout_tp);
-            //////////////////
+                    std::chrono::system_clock::from_time_t(timeout_time_t);
             std::this_thread::sleep_until(timeout_tp);
-            std::cout<<"Current Time :: ";
-            // Print Current Time
-            print_time_point(std::chrono::system_clock::now());
 #endif
         }
         while (true)

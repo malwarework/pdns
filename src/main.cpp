@@ -1,8 +1,4 @@
 #include <utility>
-#include <tins/tins.h>
-#include <iostream>
-#include <nlohmann/json.hpp>
-#include <vector>
 #include <thread>
 #include <mutex>
 #include <boost/property_tree/ptree.hpp>
@@ -17,12 +13,7 @@
 #include "../include/PeriodicListPrunning.h"
 #include "../include/httplib.h"
 
-using std::cout;
-using std::endl;
-using json = nlohmann::json;
 using namespace boost::program_options;
-using namespace Tins;
-using namespace std;
 using namespace httplib;
 
 string host = "localhost";
@@ -32,17 +23,9 @@ int port = 80;
 std::vector<Candidate> L;
 std::mutex L_mutex;
 
-void print_time_point(std::chrono::system_clock::time_point timePoint)
-{
-    std::time_t timeStamp = std::chrono::system_clock::to_time_t(timePoint);
-    std::cout << std::ctime(&timeStamp) << std::endl;
-
-}
-
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
-    PeriodicListPrunning filter2;
-    std::thread([func, filter2, interval, cron]() {
+    std::thread([func, interval, cron]() {
         if(cron)
         {
 #ifdef DEBUG
@@ -57,8 +40,7 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
             timeout_tm->tm_mday += 1;
             time_t timeout_time_t=mktime(timeout_tm);
 
-            std::chrono::system_clock::time_point timeout_tp =
-                    std::chrono::system_clock::from_time_t(timeout_time_t);
+            std::chrono::system_clock::time_point timeout_tp = std::chrono::system_clock::from_time_t(timeout_time_t);
             std::this_thread::sleep_until(timeout_tp);
 #endif
         }
@@ -101,9 +83,8 @@ void F2a(std::vector<Candidate>& _L)
 }
 
 
-void converttojson(std::vector<Candidate>& _L)
+void convert2json(std::vector<Candidate>& _L)
 {
-    //std::vector<json> jv;
     json jv;
     L_mutex.lock();
     for (Candidate value : L)
@@ -317,12 +298,12 @@ int main(int argc, char* argv[])
     }
 #ifdef DEBUG
     timer_start(F2a, 30);
-    timer_start(converttojson, 90, false);
+    timer_start(convert2json, 90, false);
 #else
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));
     timer_start(F2a, cron_time);
-    timer_start(converttojson, upload_hour, true);
+    timer_start(convert2json, upload_hour, true);
 #endif
     /// Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;

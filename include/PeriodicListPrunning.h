@@ -7,13 +7,6 @@
 
 #include "config.h"
 #include "TrafficeVolumeReduction.h"
-#include <ctime>
-#include <vector>
-#include <iostream>
-#include <tins/tins.h>
-
-
-using namespace std;
 
 /// Structure of data
 struct Candidate{

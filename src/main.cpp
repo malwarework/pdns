@@ -53,7 +53,7 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
                         std::chrono::system_clock::from_time_t(timeout_time_t);
                 std::this_thread::sleep_until(timeout_tp);
 #endif
-                func(L)
+                func(L);
             }
         }
         else

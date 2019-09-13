@@ -129,8 +129,13 @@ void converttojson(std::vector<Candidate>& _L)
 #endif
         auto res = cli.Post("/", payload, "application/json");
 #ifdef DEBUG
-        if (res) {
+        if (res)
+        {
             cout << res->status << endl;
+        }
+        else
+        {
+            cout << "Error" << endl;
         }
 #endif
     }

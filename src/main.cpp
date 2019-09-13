@@ -102,26 +102,41 @@ void convert2json(std::vector<Candidate>& _L)
     }
     if (jv.size() > 0)
     {
-#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
-        httplib::SSLClient cli(host.c_str(), port);
-#else
-        httplib::Client cli(host.c_str(), port);
-#endif
         string payload = jv.dump();
 #ifdef DEBUG
         cout << payload << endl;
 #endif
-        auto res = cli.Post("/", payload, "application/json");
-#ifdef DEBUG
-        if (res)
+        if(ssl)
         {
-            cout << res->status << endl;
+            httplib::SSLClient cli(host.c_str(), port);
+            cli.enable_server_certificate_verification(false);
+            auto res = cli.Post("/", payload, "application/json");
+#ifdef DEBUG
+            if (res)
+            {
+                cout << res->status << endl;
+            }
+            else
+            {
+                cout << "Error" << endl;
+            }
+#endif
         }
         else
         {
-            cout << "Error" << endl;
-        }
+            httplib::Client cli(host.c_str(), port);
+            auto res = cli.Post("/", payload, "application/json");
+#ifdef DEBUG
+            if (res)
+            {
+                cout << res->status << endl;
+            }
+            else
+            {
+                cout << "Error" << endl;
+            }
 #endif
+        }
     }
     L.clear();
     L_mutex.unlock();

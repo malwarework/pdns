@@ -3,7 +3,7 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 cmake_minimum_required(VERSION 3.9.2)
 project(passivedns)
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypt")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypto")
 
 set(Boost_DEBUG 1)
 
@@ -49,7 +49,7 @@ set(SOURCE_FILES src/main.cpp src/TrafficeVolumeReduction.cpp include/TrafficeVo
 add_executable(passivedns ${SOURCE_FILES})
 
 target_include_directories(passivedns PRIVATE ${boost_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR})
-target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} OpenSSL::Crypto nlohmann_json::nlohmann_json)
+target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} OpenSSL::Crypto OpenSSL::SSL nlohmann_json::nlohmann_json)
 
 
 install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)

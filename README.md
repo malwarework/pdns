@@ -11,9 +11,16 @@
 1. [CMake](https://cmake.org/download/ )*(greater or equal 3.14)*
 1. openssl `libssl-dev`
 
+## Parameters
+* `-h [--help]` show info
+* `-c [--config]` path to config file *by default **/etc/passivedns/passivedns.conf***
+* `-s [--ssl]` enable ssl support
+* `-d [--daemon]` run as daemon
+
 ## Running
 1. Configure `/etc/passivedns/passivedns.conf`
 2. Execute as daemon`passivedns -d`
+3. Execute with ssl support `passivedns -s`
 
 ## Compiling
 1. `mkdir build`

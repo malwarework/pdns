@@ -44,12 +44,13 @@ endif ()
 
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
+find_package(ZLIB REQUIRED)
 
 set(SOURCE_FILES src/main.cpp src/TrafficeVolumeReduction.cpp include/TrafficeVolumeReduction.h include/config.h src/PeriodicListPrunning.cpp include/PeriodicListPrunning.h include/httplib.h)
 add_executable(passivedns ${SOURCE_FILES})
 
 target_include_directories(passivedns PRIVATE ${boost_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR})
-target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} OpenSSL::Crypto OpenSSL::SSL nlohmann_json::nlohmann_json)
+target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} ${ZLIB_LIBRARIES} OpenSSL::Crypto OpenSSL::SSL nlohmann_json::nlohmann_json)
 
 
 install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)

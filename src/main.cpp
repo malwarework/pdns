@@ -83,6 +83,28 @@ void F2a(std::vector<Candidate>& _L)
     L_mutex.unlock();
 }
 
+bool F3(Candidate value)
+{
+    std::set<IP_TYPE> networks;
+    for (auto ip : value.r)
+    {
+        std::vector<std::string> results;
+        boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
+        results[2] = results[3] = '0';
+        networks.insert(boost::algorithm::join(results, "."));
+    }
+    float p = (float)(networks.size() / value.r.size()
+    if (
+            (value.ttl < 30) &&
+            (value.r.size() >= 10) &&
+            (value.g.size() >= 5) &&
+            ((value.r.size >= 5) && (p >= 0.8)) &&
+            ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10))
+            )
+        return false;
+    else return true;
+}
+
 
 void convert2json(std::vector<Candidate>& _L)
 {

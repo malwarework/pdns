@@ -3,7 +3,7 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 cmake_minimum_required(VERSION 3.9.2)
 project(passivedns)
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypto")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lz -lssl -lcrypto -ldl")
 
 set(Boost_DEBUG 1)
 
@@ -27,17 +27,17 @@ file(COPY lib/libtins DESTINATION ${CMAKE_BINARY_DIR}/lib)
 file(COPY lib/boost DESTINATION ${CMAKE_BINARY_DIR}/lib)
 
 find_library(OPTIONS_LIBRARY
-                boost_program_options
-                PATHS ${boost_LIB_DIR}
-                NO_DEFAULT_PATH)
+        boost_program_options
+        PATHS ${boost_LIB_DIR}
+        NO_DEFAULT_PATH)
 if (NOT OPTIONS_LIBRARY)
         message("Cant find OPTIONS_LIBRARY")
 endif ()
 
 find_library(TINS_LIBRARY
-                tins
-                ${libtins_LIB_DIR}
-                NO_DEFAULT_PATH)
+        tins
+        ${libtins_LIB_DIR}
+        NO_DEFAULT_PATH)
 if (NOT TINS_LIBRARY)
         message("Cant find TINS_LIBRARY")
 endif ()
@@ -50,7 +50,7 @@ set(SOURCE_FILES src/main.cpp src/TrafficeVolumeReduction.cpp include/TrafficeVo
 add_executable(passivedns ${SOURCE_FILES})
 
 target_include_directories(passivedns PRIVATE ${boost_INCLUDE_DIR} ${json_INCLUDE_DIR} ${libtins_INCLUDE_DIR})
-target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} ${ZLIB_LIBRARIES} OpenSSL::Crypto OpenSSL::SSL nlohmann_json::nlohmann_json)
+target_link_libraries(passivedns "${TINS_LIBRARY}" ${OPTIONS_LIBRARY} ${ZLIB_LIBRARIES} OpenSSL::Crypto OpenSSL::SSL nlohmann_json::nlohmann_json ${CMAKE_DL_LIBS})
 
 
 install(TARGETS passivedns RUNTIME DESTINATION bin PERMISSIONS WORLD_EXECUTE)

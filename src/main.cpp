@@ -94,13 +94,10 @@ bool F3(Candidate value)
         networks.insert(boost::algorithm::join(results, "."));
     }
     float p = (float)(networks.size() / value.r.size()
-    if ((value.ttl < 30) &&
-            (value.r.size() >= 10) &&
-            (value.g.size() >= 5) &&
-            ((value.r.size >= 5) && (p >= 0.8)) &&
-            ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10)))
+    if ((value.ttl < 30) && (value.r.size() >= 10) && (value.g.size() >= 5) && ((value.r.size >= 5) && (p >= 0.8)) && ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10)))
         return false;
-    else return true;
+    else
+        return true;
 }
 
 

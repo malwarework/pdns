@@ -282,34 +282,21 @@ int main(int argc, char* argv[])
             exit(EXIT_FAILURE);
         }
         umask(0);
-#ifdef SYSLOG
+
         openlog("passivedns", LOG_NOWAIT | LOG_PID, LOG_USER);
         syslog(LOG_NOTICE, "Successfully started passivedns");
-#endif
+
         sid = setsid();
         if(sid < 0)
         {
-#ifdef SYSLOG
             /// Log failure and exit
             syslog(LOG_ERR, "Could not generate session ID for child process");
-#endif
-
-            /*
-             * If a new session ID could not be generated, we must terminate the child process
-             * or it will be orphaned
-             */
             exit(EXIT_FAILURE);
         }
         if((chdir("/")) < 0)
         {
-#ifdef SYSLOG
             /// Log failure and exit
             syslog(LOG_ERR, "Could not change working directory to /");
-#endif
-            /*
-             * If our guaranteed directory does not exist, terminate the child process to ensure
-             * the daemon has not been hijacked
-             */
             exit(EXIT_FAILURE);
         }
         close(STDIN_FILENO);
@@ -333,10 +320,9 @@ int main(int argc, char* argv[])
     Sniffer sniffer(interface, config);
     /// Start the capture
     sniffer.sniff_loop(callback);
-#ifdef SYSLOG
+
     syslog(LOG_NOTICE, "Stopping daemon-name");
     closelog();
-#endif
     /// Terminate the child process when the daemon completes
     exit(EXIT_SUCCESS);
 }

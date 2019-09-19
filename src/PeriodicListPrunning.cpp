@@ -28,17 +28,11 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
             std::set<IP_TYPE> new_ips = domain.ips;
             std::vector<IP_TYPE> union_ips;
 
-            std::sort(old_ips.begin(), old_ips.end());
-            std::sort(new_ips.begin(), new_ips.end());
+            std::sort(elem.r.begin(), elem.r.end());
+            std::sort(domain.ips.begin(), domain.ips.end());
 
             std::set_union(old_ips.begin(), old_ips.end(), new_ips.begin(), new_ips.end(), std::back_inserter(union_ips));
-            for (string &s : old_ips)
-                cout << s << " ";
-            cout << endl;
-            for (string &s : new_ips)
-                cout << s << " ";
-            int lenips = 0;
-//            int lenips = union_ips.size() - new_ips.size();
+            int lenips = union_ips.size() - new_ips.size();
             if (lenips > 0)
             {
                 elem.g.insert(std::make_pair(domain.t, lenips));

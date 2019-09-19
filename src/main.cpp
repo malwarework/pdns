@@ -85,6 +85,7 @@ void F2a(std::vector<Candidate>& _L)
 
 bool F3(Candidate value)
 {
+    return true;
     std::set<IP_TYPE> networks;
     for (auto ip : value.r)
     {
@@ -94,12 +95,12 @@ bool F3(Candidate value)
         networks.insert(boost::algorithm::join(results, "."));
     }
     float p = (float)(networks.size() / value.r.size());
-    if ((value.ttl < 30) && (value.r.size() >= 10) && (value.g.size() >= 5) && ((value.r.size() >= 5) && (p >= 0.8)) && ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10)))
+    if ((value.ttl < 30) || (value.r.size() >= 10) || (value.g.size() >= 5) || ((value.r.size() >= 5) && (p >= 0.8)) || ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10)))
     {
-        return false;
+        return true;
     }
     else {
-        return true;
+        return false;
     }
 }
 
@@ -110,6 +111,7 @@ void convert2json(std::vector<Candidate>& _L)
     L_mutex.lock();
     for (Candidate value : L)
     {
+        if (!F3(value)) continue;
         json j;
         j["dns"] = value.dns;
 	    j["time"] = value.t;
@@ -324,8 +326,8 @@ int main(int argc, char* argv[])
         close(STDERR_FILENO);
     }
 #ifdef DEBUG
-    timer_start(F2a, 30);
-    timer_start(convert2json, 90, false);
+    timer_start(F2a, 300);
+    timer_start(convert2json, 900, false);
 #else
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));

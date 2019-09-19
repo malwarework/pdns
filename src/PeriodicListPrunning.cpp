@@ -11,7 +11,7 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
     /*
      * :TODO There are problems with calculating Gi and Ri
      */
-    for (Candidate& elem : L)
+    for (Candidate elem : L)
     {
         if(elem.domain == domain.domain)
         {
@@ -35,39 +35,27 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
                 elem.g.insert(std::make_pair(domain.t, lenips));
             }
 
-//            //Get IPs till this moment
-//            std::set<IP_TYPE> diff;
-//            std::set_difference(domain.ips.begin(), domain.ips.end(), elem.r.begin(), elem.r.end(), std::inserter(diff, diff.begin()));
-//            if (diff.size() > 0)
-//            {
-//                elem.g.insert(std::make_pair(domain.t, diff.size()));
-//            }
-
             //Set Rd
             elem.r.insert(domain.ips.begin(), domain.ips.end());
-            inArray = true;
-            break;
+            return;
         }
     }
-    if (!inArray)
-    {
-        // Set dns
-        candidate.dns = domain.dns;
-        //Set domain
-        candidate.domain = domain.domain;
-        //Set ti
-        candidate.t = domain.t;
-        //Set Qd
-        candidate.q ++;
-        //Set max TTL
-        candidate.ttl = domain.ttl;
-        //Set Rd
-        candidate.r = domain.ips;
-        //Set Gd
-        unsigned int domains_size = domain.ips.size();
-        candidate.g.insert(std::make_pair(domain.t, domains_size));
-        L.push_back(candidate);
-    }
+    // Set dns
+    candidate.dns = domain.dns;
+    //Set domain
+    candidate.domain = domain.domain;
+    //Set ti
+    candidate.t = domain.t;
+    //Set Qd
+    candidate.q ++;
+    //Set max TTL
+    candidate.ttl = domain.ttl;
+    //Set Rd
+    candidate.r = domain.ips;
+    //Set Gd
+    unsigned int domains_size = domain.ips.size();
+    candidate.g.insert(std::make_pair(domain.t, domains_size));
+    L.push_back(candidate);
 };
 
 //void F2(std::vector<Candidate>& L, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5)

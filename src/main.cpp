@@ -83,6 +83,11 @@ void F2a(std::vector<Candidate>& _L)
     L_mutex.unlock();
 }
 
+/**
+ * TODO: Doesnt work should be rebuild
+ * @param value
+ * @return
+ */
 bool F3(Candidate value)
 {
     return true;
@@ -326,8 +331,8 @@ int main(int argc, char* argv[])
         close(STDERR_FILENO);
     }
 #ifdef DEBUG
-    timer_start(F2a, 300);
-    timer_start(convert2json, 900, false);
+    timer_start(F2a, 30);
+    timer_start(convert2json, 90, false);
 #else
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));

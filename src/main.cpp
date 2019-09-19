@@ -228,7 +228,7 @@ int main(int argc, char* argv[])
 
     options_description desc("Allowed options");
     desc.add_options()
-            ("help", "produce help message")
+            ("help,h", "produce help message")
 #ifdef DEBUG
             ("config,c", value<string>()->default_value("passivedns.conf"), "config file path")
 #else

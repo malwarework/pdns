@@ -11,7 +11,8 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
     /*
      * :TODO There are problems with calculating Gi and Ri
      */
-    for (Candidate& elem : L){
+    for (Candidate& elem : L)
+    {
         if(elem.domain == domain.domain)
         {
             // Set dns
@@ -23,12 +24,26 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
             //Set max TTL
             elem.ttl = (elem.ttl >= domain.ttl ? elem.ttl : domain.ttl);
             //Set Gd
-            //Get IPs till this moment
-            std::set<IP_TYPE> diff;
-            std::set_difference(domain.ips.begin(), domain.ips.end(), elem.r.begin(), elem.r.end(), std::inserter(diff, diff.begin()));
-            if (diff.size() > 0){
-                elem.g.insert(std::make_pair(domain.t, diff.size()));
+            std::set<IP_TYPE> old_ips = elem.r;
+            std::set<IP_TYPE> new_ips = domain.ips;
+            std::vector<IP_TYPE> union_ips;
+            std::sort(old_ips.begin(), old_ips.old());
+            std::sort(new_ips.begin(), new_ips.old());
+            std::set_union(old_ips.begin(), old_ips.end(), new_ips.begin(), new_ips.end(), std:back_inserter(union_ips));
+            int lenips = unionset.size() - new_ips.size();
+            if (lenips > 0)
+            {
+                elem.g.insert(std::make_pair(domain.t, lenips));
             }
+
+//            //Get IPs till this moment
+//            std::set<IP_TYPE> diff;
+//            std::set_difference(domain.ips.begin(), domain.ips.end(), elem.r.begin(), elem.r.end(), std::inserter(diff, diff.begin()));
+//            if (diff.size() > 0)
+//            {
+//                elem.g.insert(std::make_pair(domain.t, diff.size()));
+//            }
+
             //Set Rd
             elem.r.insert(domain.ips.begin(), domain.ips.end());
             inArray = true;

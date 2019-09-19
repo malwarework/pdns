@@ -12,7 +12,10 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
      * :TODO There are problems with calculating Gi and Ri
      */
     for (Candidate& elem : L){
-        if(elem.domain == domain.domain){
+        if(elem.domain == domain.domain)
+        {
+            // Set dns
+            elem.dns = domain.dns;
             // Set ti
             elem.t = domain.t;
             //Set Qd
@@ -32,7 +35,10 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
             break;
         }
     }
-    if (!inArray){
+    if (!inArray)
+    {
+        // Set dns
+        candidate.dns = domain.dns;
         //Set domain
         candidate.domain = domain.domain;
         //Set ti

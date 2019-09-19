@@ -19,6 +19,7 @@ using namespace httplib;
 string host = "localhost";
 bool ssl = false;
 int port = 80;
+string dns_id;
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
@@ -90,6 +91,7 @@ void convert2json(std::vector<Candidate>& _L)
     for (Candidate value : L)
     {
         json j;
+        j["dns"] = value.dns;
 	    j["time"] = value.t;
         j["domain"] = value.domain;
         j["T"] = value.ttl;
@@ -186,6 +188,7 @@ bool callback(const PDU& pdu)
             _dns.domain = boost::algorithm::to_lower_copy(answer.dname());
             trim_left_if(_dns.domain, boost::is_any_of("www."));
             _dns.ttl = answer.ttl();
+            _dns.dns = dns_id;
             try
             {
                 _dns.ips.insert(answer.data());
@@ -205,6 +208,7 @@ bool callback(const PDU& pdu)
             _dns.ttl = answer.ttl();
             std::set<IP_TYPE> _ips = resolveDomain(answer.data());
             _dns.ips.insert(_ips.begin(), _ips.end());
+            _dns.dns = dns_id;
         }
     }
     if(tvr.F1(_dns))
@@ -259,6 +263,7 @@ int main(int argc, char* argv[])
     }
     boost::property_tree::ini_parser::read_ini(configfile, pt);
     string interface = pt.get<std::string>("Global.interface");
+    dns_id = pt.get<std::string>("Global.DNS_ID");
 
     //Set hostname
     host = pt.get<string>("HTTP.host");

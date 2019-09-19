@@ -11,6 +11,7 @@
 /// Structure for data domains
 struct DomainInfo {
     std::string domain; ///< Domain Name
+    std::string dns;    ///< Id of dns server
     unsigned short int ttl; ///< TTL
     std::set<IP_TYPE> ips;  ///< List of IPs
     uint64_t t; ///< Value of time

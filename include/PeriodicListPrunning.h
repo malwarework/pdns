@@ -11,6 +11,7 @@
 /// Structure of data
 struct Candidate{
     std::string domain; ///< Domain name
+    std::string dns; ///DNS id of dns server
     uint64_t t; ///< value of time
     unsigned int q=0;   ///< Qi
     unsigned short int ttl; ///< TTL

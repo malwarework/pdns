@@ -5,8 +5,6 @@
  * Comment not using params:
  * DEBUG - for debug
  * ERROR - enable output errors to terminal
- * KAFKA - enable suuport of kafka
- * SYSLOG - output to syslog
  */
 #include <vector>
 #include <tins/tins.h>
@@ -21,7 +19,6 @@ using namespace Tins;
 //#define IP_TYPE IPv4Address
 #define IP_TYPE std::string
 //#define ERROR
-#define SYSLOG
 //#define DEBUG
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #define CPPHTTPLIB_ZLIB_SUPPORT

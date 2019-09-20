@@ -4,17 +4,18 @@
 
 #include "../include/PeriodicListPrunning.h"
 
-void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
+void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain){
     Candidate candidate;
 
     bool inArray = false;
     /*
      * :TODO There are problems with calculating Gi and Ri
      */
-    for (Candidate elem : L)
+    for (auto & elem : *_L)
     {
         if(elem.domain == domain.domain)
         {
+//	    cout << elem.domain << endl;
             // Set dns
             elem.dns = domain.dns;
             // Set ti
@@ -37,6 +38,15 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
 
             //Set Rd
             elem.r.insert(domain.ips.begin(), domain.ips.end());
+	    if (elem.g.size() > 1)
+	    {
+		cout << elem.domain << endl;
+	    	json j;
+	    	j["domain"] = elem.dns;
+	    	j["ips"] = elem.r;
+	    	j["G"] = elem.g;
+	    	cout << j.dump() << endl;
+	    }
             return;
         }
     }
@@ -55,7 +65,7 @@ void PeriodicListPrunning::push(std::vector<Candidate> &L, DomainInfo domain){
     //Set Gd
     unsigned int domains_size = domain.ips.size();
     candidate.g.insert(std::make_pair(domain.t, domains_size));
-    L.push_back(candidate);
+    (*_L).push_back(candidate);
 };
 
 //void F2(std::vector<Candidate>& L, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5)

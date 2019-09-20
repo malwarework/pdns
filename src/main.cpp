@@ -206,7 +206,7 @@ bool callback(const PDU& pdu)
     DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
     Packet packet = (Packet)pdu;
     DomainInfo _dns;
-    _dns.t = packet.timestamp().seconds();
+    _dns.t = packet.timestamp().seconds() + packet.timestamp().microseconds();
 
     TrafficeVolumeReduction tvr;
 
@@ -242,7 +242,7 @@ bool callback(const PDU& pdu)
     if(tvr.F1(_dns))
     {
         L_mutex.lock();
-        PeriodicListPrunning::push(L, _dns);
+        PeriodicListPrunning::push(&L, _dns);
         L_mutex.unlock();
     }
     return true;
@@ -332,8 +332,8 @@ int main(int argc, char* argv[])
         close(STDERR_FILENO);
     }
 #ifdef DEBUG
-    timer_start(F2a, 30);
-    timer_start(convert2json, 90, false);
+    timer_start(F2a, 150);
+    timer_start(convert2json, 300, false);
 #else
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));

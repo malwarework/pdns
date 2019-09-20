@@ -61,7 +61,8 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
 void F2a(std::vector<Candidate>& _L)
 {
     L_mutex.lock();
-    for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
+    for (std::vector<Candidate>::iterator value=_L.begin();value!=_L.end();)
+    {
         std::set<IP_TYPE> networks;
         for (auto ip : value->r)
         {
@@ -73,7 +74,7 @@ void F2a(std::vector<Candidate>& _L)
 
         if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5)))
         {
-            value = L.erase(value);
+            value = _L.erase(value);
         }
         else
         {
@@ -114,7 +115,7 @@ void convert2json(std::vector<Candidate>& _L)
 {
     json jv;
     L_mutex.lock();
-    for (Candidate value : L)
+    for (Candidate value : _L)
     {
         if (!F3(value)) continue;
         json j;
@@ -167,7 +168,7 @@ void convert2json(std::vector<Candidate>& _L)
 #endif
         }
     }
-    L.clear();
+    _L.clear();
     L_mutex.unlock();
 }
 

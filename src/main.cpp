@@ -26,7 +26,8 @@ std::mutex L_mutex;
 
 void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int interval, bool cron=false)
 {
-    std::thread([func, interval, cron]() {
+    std::thread([func, interval, cron]()
+    {
         if(cron)
         {
 #ifdef DEBUG

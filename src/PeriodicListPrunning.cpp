@@ -4,7 +4,8 @@
 
 #include "../include/PeriodicListPrunning.h"
 
-void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain){
+void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain)
+{
     Candidate candidate;
 
     bool inArray = false;

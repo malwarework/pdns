@@ -189,7 +189,7 @@ bool callback(const PDU& pdu)
             _dns.dns = dns_id;
         }
     }
-    if(tvr.F1(_dns))
+    if(tvr.filter(_dns))
     {
         L_mutex.lock();
         PeriodicListPrunning::push(&L, _dns);

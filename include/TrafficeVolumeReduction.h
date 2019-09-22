@@ -20,11 +20,11 @@ struct DomainInfo {
 
 class TrafficeVolumeReduction {
 private:
-    static bool F1a(const DomainInfo&, unsigned short int);
-    static bool F1b(const DomainInfo&, unsigned int, unsigned short int);
-    static bool F1c(const DomainInfo&);
+    static bool filter_a(const DomainInfo&, unsigned short int);
+    static bool filter_b(const DomainInfo&, unsigned int, unsigned short int);
+    static bool filter_c(const DomainInfo&);
 public:
-    bool F1(const DomainInfo&);
+    bool filter(const DomainInfo&);
 };
 
 

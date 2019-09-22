@@ -15,7 +15,6 @@ void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain){
     {
         if(elem.domain == domain.domain)
         {
-//	    cout << elem.domain << endl;
             // Set dns
             elem.dns = domain.dns;
             // Set ti
@@ -38,15 +37,17 @@ void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain){
 
             //Set Rd
             elem.r.insert(domain.ips.begin(), domain.ips.end());
-	    if (elem.g.size() > 1)
-	    {
-		cout << elem.domain << endl;
-	    	json j;
-	    	j["domain"] = elem.dns;
-	    	j["ips"] = elem.r;
-	    	j["G"] = elem.g;
-	    	cout << j.dump() << endl;
-	    }
+#ifdef DEBUG
+            if (elem.g.size() > 1)
+            {
+                cout << elem.domain << endl;
+                json j;
+                j["domain"] = elem.dns;
+                j["ips"] = elem.r;
+                j["G"] = elem.g;
+                cout << j.dump() << endl;
+            }
+#endif
             return;
         }
     }
@@ -67,22 +68,3 @@ void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain){
     candidate.g.insert(std::make_pair(domain.t, domains_size));
     (*_L).push_back(candidate);
 };
-
-//void F2(std::vector<Candidate>& L, unsigned short int q=100, unsigned short int len_g=3, unsigned short int len_rj=5, float p=0.5)
-//{
-//    for (std::vector<Candidate>::iterator value=L.begin();value!=L.end();){
-//        std::set<IP_TYPE> networks;
-//        for (auto ip : value->r){
-//            std::vector<std::string> results;
-//            boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
-//            results[2] = results[3] = '0';
-//            networks.insert(boost::algorithm::join(results, "."));
-//        }
-//        if ((value->q > q) && (value->g.size() < len_g) && ((value->r.size() <= len_rj) || ((float)(networks.size() / value->r.size()) <= p))){
-//            ++value;
-//        }
-//        else{
-//            value = L.erase(value);
-//        }
-//    }
-//}

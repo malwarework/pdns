@@ -61,7 +61,7 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
 void F2a(std::vector<Candidate>& _L)
 {
     L_mutex.lock();
-    for (std::vector<Candidate>::iterator value=_L.begin();value!=_L.end();)
+    for (std::vector<Candidate>::iterator value = _L.begin();value != _L.end();)
     {
         std::set<IP_TYPE> networks;
         for (auto ip : value->r)
@@ -206,7 +206,7 @@ bool callback(const PDU& pdu)
     DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
     Packet packet = (Packet)pdu;
     DomainInfo _dns;
-    _dns.t = packet.timestamp().seconds() + packet.timestamp().microseconds();
+    _dns.t = packet.timestamp().seconds()*1000000 + packet.timestamp().microseconds();
 
     TrafficeVolumeReduction tvr;
 

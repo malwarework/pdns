@@ -7,8 +7,6 @@
 void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain)
 {
     Candidate candidate;
-
-    bool inArray = false;
     /*
      * :TODO There are problems with calculating Gi and Ri
      */
@@ -69,3 +67,48 @@ void PeriodicListPrunning::push(std::vector<Candidate>* _L, DomainInfo domain)
     candidate.g.insert(std::make_pair(domain.t, domains_size));
     (*_L).push_back(candidate);
 };
+
+
+void PeriodicListPrunning::filter(std::vector<Candidate>& _L)
+{
+    for (std::vector<Candidate>::iterator value = _L.begin();value != _L.end();)
+    {
+        std::set<IP_TYPE> networks;
+        for (auto ip : value->r)
+        {
+            std::vector<std::string> results;
+            boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
+            results[2] = results[3] = '0';
+            networks.insert(boost::algorithm::join(results, "."));
+        }
+
+        if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5)))
+        {
+            value = _L.erase(value);
+        }
+        else
+        {
+            ++value;
+        }
+    }
+}
+
+bool PeriodicListPrunning::advanced_filter(Candidate value)
+{
+    std::set<IP_TYPE> networks;
+    for (auto ip : value.r)
+    {
+        std::vector<std::string> results;
+        boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
+        results[2] = results[3] = '0';
+        networks.insert(boost::algorithm::join(results, "."));
+    }
+    float p = (float)(networks.size() / value.r.size());
+    if ((value.ttl < 30) || (value.r.size() >= 10) || (value.g.size() >= 5) || ((value.r.size() >= 5) && (p >= 0.8)) || ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10)))
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+}

@@ -19,6 +19,6 @@ using namespace Tins;
 //#define IP_TYPE IPv4Address
 #define IP_TYPE std::string
 //#define ERROR
-#define DEBUG
+//#define DEBUG
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #define CPPHTTPLIB_ZLIB_SUPPORT

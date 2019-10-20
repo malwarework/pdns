@@ -5,15 +5,18 @@
 #include "../include/TrafficeVolumeReduction.h"
 
 
-bool TrafficeVolumeReduction::F1a(const DomainInfo& obj, unsigned short int ttl=10800){
+bool TrafficeVolumeReduction::filter_a(const DomainInfo& obj, unsigned short int ttl=10800)
+{
     return obj.ttl <= ttl;
 }
 
-bool TrafficeVolumeReduction::F1b(const DomainInfo& obj, unsigned int lenpd=3, unsigned short int ttl=30){
+bool TrafficeVolumeReduction::filter_b(const DomainInfo& obj, unsigned int lenpd=3, unsigned short int ttl=30)
+{
     return (obj.ips.size() >= lenpd) || (obj.ttl <= ttl);
 }
 
-bool TrafficeVolumeReduction::F1c(const DomainInfo& obj){
+bool TrafficeVolumeReduction::filter_c(const DomainInfo& obj)
+{
     std::set<IP_TYPE> networks;
     if (obj.ips.size() == 0)
         return false;
@@ -32,6 +35,7 @@ bool TrafficeVolumeReduction::F1c(const DomainInfo& obj){
 
 }
 
-bool TrafficeVolumeReduction::F1(const DomainInfo& obj) {
-    return  F1a(obj) && F1b(obj) && F1c(obj);
+bool TrafficeVolumeReduction::filter(const DomainInfo& obj)
+{
+    return  filter_a(obj) && filter_b(obj) && filter_c(obj);
 }

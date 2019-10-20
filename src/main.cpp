@@ -20,6 +20,7 @@ string host = "localhost";
 bool ssl = false;
 int port = 80;
 string dns_id;
+int payload_count = 1000;
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
@@ -48,7 +49,9 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
         }
         while (true)
         {
+            L_mutex.lock();
             func(L);
+            L_mutex.unlock();
 #ifdef DEBUG
             std::this_thread::sleep_for(std::chrono::seconds(interval));
 #else
@@ -59,66 +62,44 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
 }
 
 
-void F2a(std::vector<Candidate>& _L)
+void post(string payload)
 {
-    L_mutex.lock();
-    for (std::vector<Candidate>::iterator value = _L.begin();value != _L.end();)
+    std::shared_ptr<Response> res;
+    if(ssl)
     {
-        std::set<IP_TYPE> networks;
-        for (auto ip : value->r)
-        {
-            std::vector<std::string> results;
-            boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
-            results[2] = results[3] = '0';
-            networks.insert(boost::algorithm::join(results, "."));
-        }
+        httplib::SSLClient cli(host.c_str(), port);
+        cli.enable_server_certificate_verification(false);
+        res = cli.Post("/", payload, "application/json");
+    }
+    else
+    {
+        httplib::Client cli(host.c_str(), port);
+        res = cli.Post("/", payload, "application/json");
 
-        if ((value->q > 100) && (value->g.size() < 3) && ((value->r.size() <= 5) || ((float)(networks.size() / value->r.size()) <= 0.5)))
-        {
-            value = _L.erase(value);
-        }
-        else
-        {
-            ++value;
-        }
     }
-    L_mutex.unlock();
-}
-
-/**
- * TODO: Doesnt work should be rebuild
- * @param value
- * @return
- */
-bool F3(Candidate value)
-{
-    return true;
-    std::set<IP_TYPE> networks;
-    for (auto ip : value.r)
+#ifdef DEBUG
+    if (res)
     {
-        std::vector<std::string> results;
-        boost::algorithm::split(results, ip, boost::algorithm::is_any_of("."));
-        results[2] = results[3] = '0';
-        networks.insert(boost::algorithm::join(results, "."));
+        cout << res->status << endl;
     }
-    float p = (float)(networks.size() / value.r.size());
-    if ((value.ttl < 30) || (value.r.size() >= 10) || (value.g.size() >= 5) || ((value.r.size() >= 5) && (p >= 0.8)) || ((p >= 0.5) && (value.ttl <= 3600) && (value.g.size() >= 10)))
+    else
     {
-        return true;
+        cout << "Error" << endl;
     }
-    else {
-        return false;
-    }
+#endif
 }
 
 
 void convert2json(std::vector<Candidate>& _L)
 {
     json jv;
-    L_mutex.lock();
+    std::shared_ptr<Response> res;
+    int cnt = 0;
     for (Candidate value : _L)
     {
-        if (!F3(value)) continue;
+#ifdef ADVANCED
+        if (!PeriodicListPrunning::advanced_filter(value)) continue;
+#endif
         json j;
         j["dns"] = value.dns;
 	    j["time"] = value.t;
@@ -130,47 +111,21 @@ void convert2json(std::vector<Candidate>& _L)
         json j_vec(value.g);
         j["G"] = j_vec;
         jv.push_back(j);
+        cnt++;
+        if(cnt >= payload_count && jv.size() > 0)
+        {
+            string payload = jv.dump();
+            post(payload);
+            cnt = 0;
+            jv.clear();
+        }
     }
     if (jv.size() > 0)
     {
         string payload = jv.dump();
-#ifdef DEBUG
-        cout << payload << endl;
-#endif
-        if(ssl)
-        {
-            httplib::SSLClient cli(host.c_str(), port);
-            cli.enable_server_certificate_verification(false);
-            auto res = cli.Post("/", payload, "application/json");
-#ifdef DEBUG
-            if (res)
-            {
-                cout << res->status << endl;
-            }
-            else
-            {
-                cout << "Error" << endl;
-            }
-#endif
-        }
-        else
-        {
-            httplib::Client cli(host.c_str(), port);
-            auto res = cli.Post("/", payload, "application/json");
-#ifdef DEBUG
-            if (res)
-            {
-                cout << res->status << endl;
-            }
-            else
-            {
-                cout << "Error" << endl;
-            }
-#endif
-        }
+        post(payload);
     }
     _L.clear();
-    L_mutex.unlock();
 }
 
 
@@ -240,7 +195,7 @@ bool callback(const PDU& pdu)
             _dns.dns = dns_id;
         }
     }
-    if(tvr.F1(_dns))
+    if(tvr.filter(_dns))
     {
         L_mutex.lock();
         PeriodicListPrunning::push(&L, _dns);
@@ -293,11 +248,12 @@ int main(int argc, char* argv[])
     boost::property_tree::ini_parser::read_ini(configfile, pt);
     string interface = pt.get<std::string>("Global.interface");
     dns_id = pt.get<std::string>("Global.DNS_ID");
-
     //Set hostname
     host = pt.get<string>("HTTP.host");
     //Set port
     port = stoi(pt.get<std::string>("HTTP.port"));
+    //Set payload count
+    payload_count = stoi(pt.get<std::string>("HTTP.payload_count"));
 
     if(vm.count("daemon"))
     {
@@ -333,12 +289,12 @@ int main(int argc, char* argv[])
         close(STDERR_FILENO);
     }
 #ifdef DEBUG
-    timer_start(F2a, 150);
+    timer_start(PeriodicListPrunning::filter, 150);
     timer_start(convert2json, 300, false);
 #else
     int upload_hour = stoi(pt.get<std::string>("Global.UPLOAD_HOUR"));
     int cron_time = stoi(pt.get<std::string>("Global.CRON_TIME"));
-    timer_start(F2a, cron_time);
+    timer_start(PeriodicListPrunning::filter, cron_time);
     timer_start(convert2json, upload_hour, true);
 #endif
     /// Sniff on the provided interface in promiscuos mode

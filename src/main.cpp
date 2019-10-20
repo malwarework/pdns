@@ -20,6 +20,7 @@ string host = "localhost";
 bool ssl = false;
 int port = 80;
 string dns_id;
+int payload_count = 1000;
 
 std::vector<Candidate> L;
 std::mutex L_mutex;
@@ -61,9 +62,39 @@ void timer_start(std::function<void(std::vector<Candidate>&)> func, unsigned int
 }
 
 
+void post(string payload)
+{
+    std::shared_ptr<Response> res;
+    if(ssl)
+    {
+        httplib::SSLClient cli(host.c_str(), port);
+        cli.enable_server_certificate_verification(false);
+        res = cli.Post("/", payload, "application/json");
+    }
+    else
+    {
+        httplib::Client cli(host.c_str(), port);
+        res = cli.Post("/", payload, "application/json");
+
+    }
+#ifdef DEBUG
+    if (res)
+    {
+        cout << res->status << endl;
+    }
+    else
+    {
+        cout << "Error" << endl;
+    }
+#endif
+}
+
+
 void convert2json(std::vector<Candidate>& _L)
 {
     json jv;
+    std::shared_ptr<Response> res;
+    int cnt = 0;
     for (Candidate value : _L)
     {
 #ifdef ADVANCED
@@ -80,44 +111,19 @@ void convert2json(std::vector<Candidate>& _L)
         json j_vec(value.g);
         j["G"] = j_vec;
         jv.push_back(j);
+        cnt++;
+        if(cnt >= payload_count && jv.size() > 0)
+        {
+            string payload = jv.dump();
+            post(payload);
+            cnt = 0;
+            jv.clear();
+        }
     }
     if (jv.size() > 0)
     {
         string payload = jv.dump();
-#ifdef DEBUG
-        cout << payload << endl;
-#endif
-        if(ssl)
-        {
-            httplib::SSLClient cli(host.c_str(), port);
-            cli.enable_server_certificate_verification(false);
-            auto res = cli.Post("/", payload, "application/json");
-#ifdef DEBUG
-            if (res)
-            {
-                cout << res->status << endl;
-            }
-            else
-            {
-                cout << "Error" << endl;
-            }
-#endif
-        }
-        else
-        {
-            httplib::Client cli(host.c_str(), port);
-            auto res = cli.Post("/", payload, "application/json");
-#ifdef DEBUG
-            if (res)
-            {
-                cout << res->status << endl;
-            }
-            else
-            {
-                cout << "Error" << endl;
-            }
-#endif
-        }
+        post(payload);
     }
     _L.clear();
 }
@@ -246,6 +252,8 @@ int main(int argc, char* argv[])
     host = pt.get<string>("HTTP.host");
     //Set port
     port = stoi(pt.get<std::string>("HTTP.port"));
+    //Set payload count
+    payload_count = stoi(pt.get<std::string>("HTTP.payload_count"));
 
     if(vm.count("daemon"))
     {
